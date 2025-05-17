@@ -3,373 +3,362 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Restaurante El Gourmet - Experiencia Culinaria Única</title>
+  <title>Hotel y Restaurante Montana</title>
   <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap');
+
     :root {
-      --color-fondo: #2c2f33;
-      --color-principal: #d4af37; /* dorado */
-      --color-secundario: #23272a;
-      --color-texto: #f5f5f5;
-      --color-acento: #7289da;
+      --color-fondo: #121212;
+      --color-principal: #d4af37; /* Dorado */
+      --color-secundario: #1f1f1f;
+      --color-texto: #eaeaea;
+      --color-acento: #f0c95c;
+      --trans-duracion: 0.3s;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
+      font-family: 'Open Sans', sans-serif;
       background-color: var(--color-fondo);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: var(--color-texto);
-      line-height: 1.6;
+      line-height: 1.5;
       display: flex;
       flex-direction: column;
       min-height: 100vh;
+      scroll-behavior: smooth;
+      padding: 0 15px;
     }
 
     header {
       background-color: var(--color-secundario);
-      padding: 25px 20px;
-      text-align: center;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.5);
       position: sticky;
       top: 0;
       z-index: 1000;
+      padding: 18px 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+      flex-wrap: wrap;
     }
 
     header h1 {
-      margin: 0;
-      font-size: 2.8rem;
-      letter-spacing: 3px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 700;
+      font-size: 2.4rem;
       color: var(--color-principal);
-      font-weight: 900;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      font-family: 'Georgia', serif;
-      user-select: none;
+      cursor: default;
+      flex-grow: 1;
+      transition: color var(--trans-duracion);
+    }
+
+    header h1:hover {
+      color: var(--color-acento);
+      text-shadow: 0 0 8px var(--color-acento);
     }
 
     nav {
-      margin-top: 10px;
+      display: flex;
+      gap: 25px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      flex-grow: 2;
     }
 
     nav a {
       color: var(--color-texto);
-      margin: 0 15px;
       text-decoration: none;
       font-weight: 600;
       font-size: 1.1rem;
-      transition: color 0.3s ease;
+      position: relative;
+      transition: color var(--trans-duracion);
       user-select: none;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background-color: var(--color-principal);
+      transition: width var(--trans-duracion);
     }
 
     nav a:hover {
       color: var(--color-principal);
     }
 
+    nav a:hover::after {
+      width: 100%;
+    }
+
     main {
       flex: 1;
-      max-width: 960px;
-      margin: 40px auto;
-      padding: 0 20px;
+      max-width: 900px;
+      margin: 40px auto 60px;
     }
 
     section {
-      margin-bottom: 60px;
-      border-radius: 12px;
       background-color: var(--color-secundario);
-      padding: 30px 25px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+      border-radius: 12px;
+      padding: 35px 30px;
+      margin-bottom: 50px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+      user-select: text;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s forwards;
+    }
+
+    section:nth-child(odd) {
+      animation-delay: 0.15s;
+    }
+    section:nth-child(even) {
+      animation-delay: 0.3s;
     }
 
     section h2 {
+      font-family: 'Playfair Display', serif;
       color: var(--color-principal);
-      font-size: 2.5rem;
-      margin-bottom: 25px;
-      font-family: 'Georgia', serif;
-      border-bottom: 4px solid var(--color-principal);
-      padding-bottom: 10px;
-      user-select: none;
+      font-size: 2.4rem;
+      margin-bottom: 18px;
+      border-bottom: 3px solid var(--color-principal);
+      padding-bottom: 8px;
     }
 
     section p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-      user-select: text;
+      font-size: 1.15rem;
+      line-height: 1.7;
+      margin-bottom: 22px;
     }
 
-    .bienvenida p,
-    .historia p,
-    .testimonios p,
-    .contacto-info p {
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
-      font-style: italic;
-    }
-
-    .historia p {
-      font-style: normal;
-    }
-
-    .menu-item {
-      margin-bottom: 18px;
-      border-bottom: 1px solid rgba(212,175,55,0.3);
-      padding-bottom: 12px;
-    }
-
-    .menu-item:last-child {
-      border: none;
-    }
-
-    .menu-item h3 {
-      margin: 0;
-      font-size: 1.6rem;
-      color: var(--color-principal);
-      font-weight: 700;
-      user-select: none;
-    }
-
-    .menu-item p {
-      margin: 6px 0 0 0;
-      font-size: 1rem;
-      font-style: italic;
-      color: #ddd;
-      user-select: text;
-    }
-
-    .menu-item .precio {
-      float: right;
-      font-weight: 700;
-      color: var(--color-principal);
-      font-size: 1.2rem;
-      user-select: none;
-    }
-
-    .servicios-lista,
-    .eventos-lista,
-    .testimonios-lista {
-      list-style: none;
+    ul {
+      list-style-type: none;
+      font-size: 1.1rem;
+      margin-left: 0;
       padding-left: 0;
     }
 
-    .servicios-lista li,
-    .eventos-lista li,
-    .testimonios-lista li {
-      font-size: 1.2rem;
+    ul li {
       padding: 10px 0;
       border-bottom: 1px solid rgba(212,175,55,0.3);
-      user-select: text;
+      transition: color var(--trans-duracion);
+      cursor: default;
     }
 
-    .servicios-lista li:last-child,
-    .eventos-lista li:last-child,
-    .testimonios-lista li:last-child {
+    ul li:last-child {
       border-bottom: none;
     }
 
-    .galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 15px;
-      margin-top: 25px;
-    }
-
-    .galeria img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      user-select: none;
-    }
-
-    .contacto-info {
-      font-size: 1.3rem;
-      line-height: 1.4;
-      user-select: text;
-      max-width: 720px;
-      margin-left: auto;
-      margin-right: auto;
+    ul li:hover {
+      color: var(--color-principal);
     }
 
     .boton-contacto {
-      margin-top: 25px;
-      background-color: var(--color-principal);
+      display: block;
+      width: 100%;
+      max-width: 320px;
+      margin: 30px auto 0;
+      padding: 16px 0;
+      background: linear-gradient(45deg, var(--color-principal), var(--color-acento));
       color: var(--color-secundario);
       border: none;
-      padding: 15px 35px;
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      border-radius: 8px;
-      cursor: pointer;
+      border-radius: 25px;
+      text-align: center;
+      text-decoration: none;
       user-select: none;
-      transition: background-color 0.3s ease;
-      display: inline-block;
+      box-shadow: 0 0 12px rgba(212,175,55,0.8);
+      transition: background-position 0.3s ease, box-shadow 0.3s ease;
     }
 
     .boton-contacto:hover {
-      background-color: #b58e22;
+      background-position: right center;
+      box-shadow: 0 0 20px var(--color-acento);
+      color: var(--color-fondo);
     }
 
     footer {
       background-color: var(--color-secundario);
-      padding: 20px 10px;
+      padding: 18px 10px;
       text-align: center;
       font-size: 1rem;
       color: var(--color-texto);
       user-select: none;
+      box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
+      margin-top: auto;
     }
 
-    @media (max-width: 700px) {
-      header h1 {
-        font-size: 2rem;
+    /* Animaciones */
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
-      main {
-        margin: 25px auto;
-      }
+    }
+
+    /* Estilos para estrellas */
+
+    .estrellas {
+      display: flex;
+      justify-content: center;
+      margin: 15px 0 30px;
+      gap: 8px;
+    }
+
+    .estrella {
+      color: var(--color-principal);
+      font-size: 2.2rem;
+      text-shadow: 0 0 5px var(--color-acento);
+      animation: brillar 1.8s infinite alternate ease-in-out;
+      cursor: default;
+      user-select: none;
+    }
+
+    .estrella:nth-child(odd) {
+      animation-delay: 0s;
+    }
+    .estrella:nth-child(even) {
+      animation-delay: 0.9s;
+    }
+
+    @keyframes brillar {
+      0% { filter: drop-shadow(0 0 2px var(--color-acento)); opacity: 0.8; }
+      100% { filter: drop-shadow(0 0 8px var(--color-acento)); opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
       section h2 {
         font-size: 2rem;
       }
-      .menu-item h3 {
-        font-size: 1.3rem;
+      section p, ul li {
+        font-size: 1rem;
       }
       .boton-contacto {
         font-size: 1.1rem;
-        padding: 12px 25px;
+        max-width: 100%;
       }
-      .galeria {
-        grid-template-columns: 1fr;
+      .estrella {
+        font-size: 1.8rem;
       }
     }
   </style>
 </head>
 <body>
   <header>
-    <h1>Restaurante El Gourmet</h1>
+    <h1>Hotel y Restaurante Montana</h1>
     <nav>
       <a href="#bienvenida">Bienvenida</a>
-      <a href="#historia">Historia</a>
-      <a href="#menu">Menú</a>
-      <a href="#servicios">Servicios</a>
+      <a href="#alojamiento">Alojamiento</a>
+      <a href="#restaurante">Restaurante</a>
       <a href="#eventos">Eventos</a>
-      <a href="#testimonios">Testimonios</a>
-      <a href="#galeria">Galería</a>
+      <a href="#piscina">Piscina</a>
       <a href="#contacto">Contacto</a>
     </nav>
   </header>
   <main>
-    <section id="bienvenida" class="bienvenida">
-      <h2>Bienvenidos a El Gourmet</h2>
+    <section id="bienvenida">
+      <h2>Bienvenidos a Montana</h2>
+      <div class="estrellas" aria-label="Calificación 5 estrellas">
+        <span class="estrella" aria-hidden="true">&#9733;</span>
+        <span class="estrella" aria-hidden="true">&#9733;</span>
+        <span class="estrella" aria-hidden="true">&#9733;</span>
+        <span class="estrella" aria-hidden="true">&#9733;</span>
+        <span class="estrella" aria-hidden="true">&#9733;</span>
+      </div>
       <p>
-        En Restaurante El Gourmet nos apasiona ofrecer experiencias gastronómicas únicas que despierten tus sentidos y te inviten a descubrir sabores excepcionales. Desde ingredientes frescos y recetas tradicionales hasta presentaciones modernas y exquisitas, cada plato está diseñado para conquistar tu paladar y tu corazón.
-      </p>
-      <p>
-        Nuestro compromiso es brindar un ambiente acogedor, servicio impecable y calidad inigualable para que cada visita sea memorable. ¡Ven y déjate sorprender por la auténtica magia de nuestra cocina!
-      </p>
-    </section>
-    <section id="historia" class="historia">
-      <h2>Nuestra Historia</h2>
-      <p>
-        Fundado en 1995, Restaurante El Gourmet nació con la visión de ofrecer alta gastronomía en un ambiente familiar y elegante. Con más de 25 años de experiencia, hemos crecido adaptándonos a los gustos de nuestros clientes sin perder la esencia que nos caracteriza.
-      </p>
-      <p>
-        Desde nuestros humildes comienzos hasta convertirnos en un referente culinario en la ciudad, cada paso ha sido guiado por la pasión por la calidad, el servicio y la innovación constante.
+        Descubre el equilibrio perfecto entre naturaleza y confort en Hotel y Restaurante Montana. Ubicados en el corazón de Poptún, Petén, te invitamos a vivir una experiencia inolvidable, donde cada detalle está pensado para tu bienestar.
       </p>
     </section>
-    <section id="menu">
-      <h2>Menú Completo</h2>
-      <h3>Entradas</h3>
-      <div class="menu-item">
-        <h3>Bruschetta Clásica <span class="precio">$8.00</span></h3>
-        <p>Pan tostado con tomate fresco, ajo, albahaca y aceite de oliva extra virgen.</p>
-      </div>
-      <div class="menu-item">
-        <h3>Sopa de Calabaza <span class="precio">$7.50</span></h3>
-        <p>Deliciosa crema de calabaza con un toque de crema y especias suaves.</p>
-      </div>
-      <h3>Platos Fuertes</h3>
-      <div class="menu-item">
-        <h3>Filete Mignon <span class="precio">$25.00</span></h3>
-        <p>Suave corte de res acompañado de salsa de champiñones y puré de papas.</p>
-      </div>
-      <div class="menu-item">
-        <h3>Risotto de Mariscos <span class="precio">$22.50</span></h3>
-        <p>Arroz cremoso con camarones, calamares y mejillones frescos.</p>
-      </div>
-      <div class="menu-item">
-        <h3>Ensalada César <span class="precio">$12.00</span></h3>
-        <p>Lechuga fresca, crotones, queso parmesano y aderezo César casero.</p>
-      </div>
-      <h3>Postres</h3>
-      <div class="menu-item">
-        <h3>Tarta de Chocolate <span class="precio">$8.00</span></h3>
-        <p>Postre irresistible con textura cremosa y sabor intenso.</p>
-      </div>
-      <div class="menu-item">
-        <h3>Mousse de Maracuyá <span class="precio">$7.50</span></h3>
-        <p>Refrescante mousse tropical con un toque ácido y dulce perfecto.</p>
-      </div>
-    </section>
-    <section id="servicios">
-      <h2>Servicios Exclusivos</h2>
-      <ul class="servicios-lista">
-        <li>Cenas privadas y eventos especiales.</li>
-        <li>Catering personalizado para empresas y celebraciones.</li>
-        <li>Menús adaptados para dietas especiales (vegetariana, sin gluten, etc.).</li>
-        <li>Reservaciones en línea con confirmación inmediata.</li>
-        <li>Ambiente climatizado y música en vivo en noches seleccionadas.</li>
-        <li>Estacionamiento privado y servicio valet.</li>
+
+    <section id="alojamiento">
+      <h2>Alojamiento</h2>
+      <p>
+        Disfruta de nuestras cómodas habitaciones, diseñadas para ofrecerte un descanso reparador y todas las comodidades que mereces. Ya sea que viajes solo, en pareja o en familia, contamos con espacios ideales para ti.
+      </p>
+      <ul>
+        <li>Habitaciones individuales, dobles y suites familiares.</li>
+        <li>Baño privado con agua caliente.</li>
+        <li>Wi-Fi gratuito en todo el hotel.</li>
+        <li>Áreas verdes y zonas de descanso para relajarte.</li>
+        <li>Servicio de lavandería y atención personalizada.</li>
       </ul>
     </section>
+
+    <section id="restaurante">
+      <h2>Restaurante</h2>
+      <p>
+        Deléitate con nuestra variedad gastronómica que combina sabores típicos de la región con platillos internacionales. Nuestro restaurante ofrece un ambiente acogedor y atención excepcional para que cada comida sea una experiencia memorable.
+      </p>
+      <ul>
+        <li>Desayunos buffet nutritivos y variados.</li>
+        <li>Menú a la carta con opciones vegetarianas y especiales.</li>
+        <li>Ingredientes frescos y de calidad.</li>
+        <li>Ambiente familiar y cordial.</li>
+      </ul>
+    </section>
+
     <section id="eventos">
       <h2>Eventos y Celebraciones</h2>
-      <ul class="eventos-lista">
-        <li>Banquetes de bodas personalizados con menús exclusivos.</li>
-        <li>Fiestas de cumpleaños y aniversarios con decoración temática.</li>
-        <li>Eventos corporativos con menús y logística adaptados a tus necesidades.</li>
-        <li>Clases de cocina y catas de vino para grupos pequeños.</li>
-      </ul>
       <p>
-        Nuestro equipo está dedicado a crear experiencias únicas y memorables para ti y tus invitados.
+        Celebra tus momentos más importantes en un espacio versátil y equipado para eventos sociales y corporativos. Nuestro equipo te brindará asesoría completa para que tu celebración sea un éxito inolvidable.
       </p>
-    </section>
-    <section id="testimonios">
-      <h2>Testimonios</h2>
-      <ul class="testimonios-lista">
-        <li>
-          <p>"Una experiencia inolvidable, la comida exquisita y el servicio impecable. ¡Volveremos seguro!" - María L.</p>
-        </li>
-        <li>
-          <p>"El ambiente es perfecto para una cena romántica. Recomiendo especialmente el Filete Mignon." - Carlos M.</p>
-        </li>
-        <li>
-          <p>"Organizamos nuestro evento de empresa aquí y todo fue excelente, desde la comida hasta la atención." - Ana G.</p>
-        </li>
+      <ul>
+        <li>Bodas, cumpleaños y aniversarios.</li>
+        <li>Reuniones empresariales y capacitaciones.</li>
+        <li>Eventos culturales y comunitarios.</li>
+        <li>Servicio de catering personalizado.</li>
       </ul>
     </section>
-    <section id="galeria">
-      <h2>Galería de Fotos</h2>
-      <div class="galeria">
-        <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?auto=format&fit=crop&w=600&q=80" alt="Plato gourmet 1" />
-        <img src="https://images.unsplash.com/photo-1555992336-03a23c78eb2b?auto=format&fit=crop&w=600&q=80" alt="Plato gourmet 2" />
-        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=600&q=80" alt="Ambiente del restaurante" />
-        <img src="https://images.unsplash.com/photo-1529692236671-f1f1db05fbc1?auto=format&fit=crop&w=600&q=80" alt="Chef preparando plato" />
-        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80" alt="Mesa servida" />
-        <img src="https://images.unsplash.com/photo-1528605248644-14dd04022da1?auto=format&fit=crop&w=600&q=80" alt="Clientes disfrutando" />
-      </div>
-    </section>
-    <section id="contacto">
-      <h2>Contáctanos</h2>
-      <p class="contacto-info">
-        Teléfono: <strong>+502 5555-1234</strong><br />
-        Dirección: <strong>Calle Principal 123, Ciudad Gourmet, Guatemala</strong><br />
-        Email: <a href="mailto:contacto@elgourmet.com" style="color: var(--color-principal); text-decoration: none;">contacto@elgourmet.com</a>
+
+    <section id="piscina">
+      <h2>Piscina y Áreas Recreativas</h2>
+      <p>
+        Relájate en nuestra refrescante piscina con cascada, ideal para descansar y disfrutar del ambiente natural. Además, contamos con áreas recreativas para que grandes y chicos vivan momentos de diversión y tranquilidad.
       </p>
-      <button class="boton-contacto" onclick="alert('¡Gracias por contactarnos!')">Enviar Mensaje</button>
+      <ul>
+        <li>Piscina limpia y segura para toda la familia.</li>
+        <li>Zonas de descanso con sombra y mobiliario cómodo.</li>
+        <li>Espacios para juegos y actividades al aire libre.</li>
+      </ul>
+      <a href="https://galeriagranmontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="margin-top: 25px;">
+        Ver Galería de Fotos
+      </a>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p style="text-align:center; font-size:1.15rem; margin-bottom:15px;">
+        ¿Quieres reservar o tienes alguna consulta? ¡Contáctanos directamente por WhatsApp!
+      </p>
+      <a
+        href="https://wa.me/50240255881"
+        target="_blank"
+        rel="noopener"
+        class="boton-contacto"
+        >Contactar por WhatsApp</a
+      >
+      <p class="contacto-info" style="margin-top: 30px; text-align:center;">
+        Dirección: <strong>Poptún, Petén, Barrio Las Tres Cruces Zona 2</strong><br />
+        Teléfono: <strong>+502 4025-5881</strong><br />
+        Email: <a href="mailto:contacto@montana.com" style="color: var(--color-principal); text-decoration: none;">contacto@montana.com</a>
+      </p>
     </section>
   </main>
   <footer>
-    &copy; 2025 Restaurante El Gourmet - Todos los derechos reservados
+    &copy; 2025 Hotel y Restaurante Montana - Todos los derechos reservados
   </footer>
 </body>
 </html>
