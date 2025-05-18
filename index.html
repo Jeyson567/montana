@@ -5,15 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Hotel y Restaurante Montana</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Open+Sans&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Playfair+Display:wght@700&family=Open+Sans&display=swap');
 
     :root {
-      --color-fondo: #121212;
-      --color-principal: #d4af37; /* Dorado */
-      --color-secundario: #1f1f1f;
-      --color-texto: #eaeaea;
-      --color-acento: #f0c95c;
-      --trans-duracion: 0.3s;
+      --color-fondo: #0a0a0a;
+      --color-principal: #d4af37; /* dorado */
+      --color-secundario: #1c1c1c;
+      --color-texto: #f9f9f9;
+      --color-acento: #e3c454;
+      --trans-duracion: 0.5s;
+      --sombra-neon: 0 0 10px var(--color-principal), 0 0 20px var(--color-principal);
     }
 
     * {
@@ -24,63 +25,71 @@
 
     body {
       font-family: 'Open Sans', sans-serif;
-      background-color: var(--color-fondo);
+      background: linear-gradient(135deg, var(--color-fondo) 0%, #1a1a1a 100%);
       color: var(--color-texto);
-      line-height: 1.5;
-      display: flex;
-      flex-direction: column;
+      line-height: 1.6;
       min-height: 100vh;
       scroll-behavior: smooth;
-      padding: 0 15px;
+      padding: 0 20px 40px;
+      overflow-x: hidden;
+      user-select: none;
     }
 
     header {
-      background-color: var(--color-secundario);
+      background: rgba(30, 30, 30, 0.9);
       position: sticky;
       top: 0;
       z-index: 1000;
-      padding: 18px 20px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      padding: 20px 30px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      user-select: none;
+      box-shadow: var(--sombra-neon);
+      backdrop-filter: saturate(180%) blur(10px);
       flex-wrap: wrap;
+      border-radius: 0 0 15px 15px;
     }
 
     header h1 {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 2.4rem;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 500;
+      font-size: 2.8rem;
       color: var(--color-principal);
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       text-transform: uppercase;
       cursor: default;
       flex-grow: 1;
-      transition: color var(--trans-duracion);
+      transition: text-shadow var(--trans-duracion);
+      text-shadow: 0 0 5px var(--color-principal);
+      user-select: text;
     }
 
     header h1:hover {
+      text-shadow:
+        0 0 15px var(--color-acento),
+        0 0 25px var(--color-acento),
+        0 0 40px var(--color-acento);
       color: var(--color-acento);
-      text-shadow: 0 0 8px var(--color-acento);
     }
 
     nav {
       display: flex;
-      gap: 25px;
+      gap: 30px;
       flex-wrap: wrap;
       justify-content: flex-end;
       flex-grow: 2;
     }
 
     nav a {
+      font-family: 'Orbitron', sans-serif;
       color: var(--color-texto);
       text-decoration: none;
       font-weight: 600;
       font-size: 1.1rem;
       position: relative;
-      transition: color var(--trans-duracion);
       user-select: none;
+      transition: color var(--trans-duracion), text-shadow var(--trans-duracion);
+      padding: 4px 0;
     }
 
     nav a::after {
@@ -88,14 +97,16 @@
       position: absolute;
       width: 0;
       height: 2px;
-      bottom: -4px;
+      bottom: -6px;
       left: 0;
       background-color: var(--color-principal);
       transition: width var(--trans-duracion);
+      border-radius: 4px;
     }
 
     nav a:hover {
       color: var(--color-principal);
+      text-shadow: 0 0 8px var(--color-principal);
     }
 
     nav a:hover::after {
@@ -103,17 +114,22 @@
     }
 
     main {
-      flex: 1;
-      max-width: 900px;
-      margin: 40px auto 60px;
+      max-width: 960px;
+      margin: 50px auto 70px;
+      display: flex;
+      flex-direction: column;
+      gap: 55px;
+      animation: fadeInUp 1s ease forwards;
     }
 
     section {
-      background-color: var(--color-secundario);
-      border-radius: 12px;
-      padding: 35px 30px;
-      margin-bottom: 50px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.7);
+      background: linear-gradient(145deg, #222222, #111111);
+      border-radius: 20px;
+      padding: 40px 35px;
+      box-shadow:
+        0 0 12px var(--color-principal),
+        inset 0 0 15px var(--color-principal);
+      color: var(--color-texto);
       user-select: text;
       opacity: 0;
       transform: translateY(20px);
@@ -121,39 +137,48 @@
     }
 
     section:nth-child(odd) {
-      animation-delay: 0.15s;
+      animation-delay: 0.2s;
     }
+
     section:nth-child(even) {
-      animation-delay: 0.3s;
+      animation-delay: 0.4s;
     }
 
     section h2 {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Orbitron', sans-serif;
       color: var(--color-principal);
-      font-size: 2.4rem;
-      margin-bottom: 18px;
+      font-size: 2.6rem;
+      margin-bottom: 20px;
+      letter-spacing: 1.5px;
       border-bottom: 3px solid var(--color-principal);
-      padding-bottom: 8px;
+      padding-bottom: 10px;
+      text-shadow: 0 0 10px var(--color-principal);
+      user-select: none;
     }
 
     section p {
-      font-size: 1.15rem;
-      line-height: 1.7;
-      margin-bottom: 22px;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      letter-spacing: 0.02em;
+      color: #f0e6b7;
     }
 
     ul {
       list-style-type: none;
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       margin-left: 0;
       padding-left: 0;
+      color: #f5f1dc;
     }
 
     ul li {
-      padding: 10px 0;
-      border-bottom: 1px solid rgba(212,175,55,0.3);
-      transition: color var(--trans-duracion);
+      padding: 12px 0;
+      border-bottom: 1px solid #d4af3766;
       cursor: default;
+      transition: color var(--trans-duracion);
+      letter-spacing: 0.02em;
+      user-select: none;
     }
 
     ul li:last-child {
@@ -161,43 +186,55 @@
     }
 
     ul li:hover {
-      color: var(--color-principal);
+      color: var(--color-acento);
+      text-shadow: 0 0 10px var(--color-acento);
     }
 
+    /* Botones */
     .boton-contacto {
-      display: block;
+      display: inline-block;
       width: 100%;
       max-width: 320px;
-      margin: 30px auto 0;
+      margin: 15px auto 0;
       padding: 16px 0;
-      background: linear-gradient(45deg, var(--color-principal), var(--color-acento));
-      color: var(--color-secundario);
-      border: none;
+      background: linear-gradient(90deg, var(--color-principal) 0%, var(--color-acento) 50%, var(--color-principal) 100%);
+      background-size: 200% 100%;
+      color: #111;
+      font-family: 'Orbitron', sans-serif;
       font-size: 1.3rem;
       font-weight: 700;
-      border-radius: 25px;
+      border-radius: 30px;
       text-align: center;
       text-decoration: none;
       user-select: none;
-      box-shadow: 0 0 12px rgba(212,175,55,0.8);
-      transition: background-position 0.3s ease, box-shadow 0.3s ease;
+      box-shadow:
+        0 0 8px var(--color-principal),
+        0 0 20px var(--color-acento);
+      transition: background-position 0.6s ease, box-shadow 0.4s ease;
+      letter-spacing: 0.05em;
     }
 
     .boton-contacto:hover {
-      background-position: right center;
-      box-shadow: 0 0 20px var(--color-acento);
+      background-position: 100% 0;
+      box-shadow:
+        0 0 12px var(--color-acento),
+        0 0 25px var(--color-principal),
+        0 0 30px var(--color-principal);
       color: var(--color-fondo);
+      text-shadow: 0 0 5px var(--color-principal);
     }
 
     footer {
-      background-color: var(--color-secundario);
-      padding: 18px 10px;
+      background: rgba(30, 30, 30, 0.9);
+      padding: 20px 10px;
       text-align: center;
       font-size: 1rem;
       color: var(--color-texto);
       user-select: none;
-      box-shadow: inset 0 2px 5px rgba(0,0,0,0.4);
-      margin-top: auto;
+      box-shadow: inset 0 2px 5px var(--color-principal);
+      border-radius: 15px 15px 0 0;
+      letter-spacing: 0.05em;
+      font-family: 'Orbitron', sans-serif;
     }
 
     /* Animaciones */
@@ -209,49 +246,191 @@
       }
     }
 
-    /* Estilos para estrellas */
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
 
+    /* Estrellas con brillo y movimiento */
     .estrellas {
       display: flex;
       justify-content: center;
       margin: 15px 0 30px;
-      gap: 8px;
+      gap: 12px;
+      filter: drop-shadow(0 0 4px var(--color-acento));
+      user-select: none;
     }
 
     .estrella {
       color: var(--color-principal);
-      font-size: 2.2rem;
-      text-shadow: 0 0 5px var(--color-acento);
-      animation: brillar 1.8s infinite alternate ease-in-out;
+      font-size: 2.6rem;
+      animation: brillar 2s infinite alternate ease-in-out;
       cursor: default;
       user-select: none;
+      text-shadow: 0 0 8px var(--color-acento);
+      transform-origin: center;
+      filter: drop-shadow(0 0 6px var(--color-principal));
     }
 
     .estrella:nth-child(odd) {
       animation-delay: 0s;
     }
     .estrella:nth-child(even) {
-      animation-delay: 0.9s;
+      animation-delay: 1s;
     }
 
     @keyframes brillar {
-      0% { filter: drop-shadow(0 0 2px var(--color-acento)); opacity: 0.8; }
-      100% { filter: drop-shadow(0 0 8px var(--color-acento)); opacity: 1; }
+      0% {
+        filter: drop-shadow(0 0 6px var(--color-acento));
+        opacity: 0.7;
+        transform: scale(1);
+      }
+      50% {
+        filter: drop-shadow(0 0 14px var(--color-acento));
+        opacity: 1;
+        transform: scale(1.1);
+      }
+      100% {
+        filter: drop-shadow(0 0 6px var(--color-acento));
+        opacity: 0.7;
+        transform: scale(1);
+      }
+    }
+
+    /* Parallax sutil en sección bienvenida */
+    #bienvenida {
+      perspective: 800px;
+      position: relative;
+      overflow: hidden;
+    }
+    #bienvenida .contenido {
+      transition: transform 0.15s ease-out;
+      will-change: transform;
+    }
+
+    /* Estilos del mapa */
+    .mapa-container {
+      margin: 40px auto;
+      max-width: 960px;
+      height: 350px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 20px var(--color-principal);
+      border: 3px solid var(--color-principal);
+    }
+
+    .mapa-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: grayscale(0.9) brightness(0.7) contrast(1.1);
+      transition: filter 0.3s ease;
+    }
+    .mapa-container iframe:hover {
+      filter: grayscale(0.7) brightness(0.9) contrast(1.2);
+    }
+
+    /* Botones extras en contacto */
+    .botones-extras {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    /* Responsive */
+
+    @media (max-width: 900px) {
+      header h1 {
+        font-size: 2.2rem;
+      }
+
+      nav {
+        gap: 20px;
+      }
+
+      nav a {
+        font-size: 1rem;
+      }
+
+      main {
+        margin: 40px auto 50px;
+        max-width: 95%;
+      }
+
+      section h2 {
+        font-size: 2.2rem;
+      }
+
+      section p, ul li {
+        font-size: 1.1rem;
+      }
+
+      .boton-contacto {
+        max-width: 100%;
+        font-size: 1.2rem;
+      }
+      .botones-extras {
+        flex-direction: column;
+        gap: 15px;
+      }
     }
 
     @media (max-width: 600px) {
-      section h2 {
-        font-size: 2rem;
+      header {
+        padding: 15px 20px;
       }
+
+      header h1 {
+        font-size: 1.8rem;
+        letter-spacing: 1.5px;
+      }
+
+      nav {
+        gap: 12px;
+        justify-content: center;
+      }
+
+      nav a {
+        font-size: 0.95rem;
+        padding: 6px 4px;
+      }
+
+      main {
+        margin: 25px auto 40px;
+      }
+
+      section {
+        padding: 30px 25px;
+      }
+
+      section h2 {
+        font-size: 1.8rem;
+        padding-bottom: 6px;
+      }
+
       section p, ul li {
         font-size: 1rem;
       }
+
       .boton-contacto {
+        padding: 14px 0;
         font-size: 1.1rem;
-        max-width: 100%;
       }
+
+      .estrellas {
+        gap: 8px;
+      }
+
       .estrella {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
     }
   </style>
@@ -269,18 +448,20 @@
     </nav>
   </header>
   <main>
-    <section id="bienvenida">
-      <h2>Bienvenidos a Montana</h2>
-      <div class="estrellas" aria-label="Calificación 5 estrellas">
-        <span class="estrella" aria-hidden="true">&#9733;</span>
-        <span class="estrella" aria-hidden="true">&#9733;</span>
-        <span class="estrella" aria-hidden="true">&#9733;</span>
-        <span class="estrella" aria-hidden="true">&#9733;</span>
-        <span class="estrella" aria-hidden="true">&#9733;</span>
+    <section id="bienvenida" aria-label="Bienvenida">
+      <div class="contenido">
+        <h2>Bienvenidos a Montana</h2>
+        <div class="estrellas" aria-label="Calificación 5 estrellas">
+          <span class="estrella" aria-hidden="true">&#9733;</span>
+          <span class="estrella" aria-hidden="true">&#9733;</span>
+          <span class="estrella" aria-hidden="true">&#9733;</span>
+          <span class="estrella" aria-hidden="true">&#9733;</span>
+          <span class="estrella" aria-hidden="true">&#9733;</span>
+        </div>
+        <p>
+          Descubre el equilibrio perfecto entre naturaleza y confort en Hotel y Restaurante Montana. Ubicados en el corazón de Poptún, Petén, te invitamos a vivir una experiencia inolvidable, donde cada detalle está pensado para tu bienestar.
+        </p>
       </div>
-      <p>
-        Descubre el equilibrio perfecto entre naturaleza y confort en Hotel y Restaurante Montana. Ubicados en el corazón de Poptún, Petén, te invitamos a vivir una experiencia inolvidable, donde cada detalle está pensado para tu bienestar.
-      </p>
     </section>
 
     <section id="alojamiento">
@@ -338,9 +519,19 @@
       </a>
     </section>
 
+    <section class="mapa-container" aria-label="Ubicación del Hotel y Restaurante Montana en Google Maps">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15668.351434433775!2d-89.4146157!3d16.3288531!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f606315f49ece35%3A0xb4503b98d571b3fb!2sGran%20Montana%20Poptun!5e0!3m2!1ses-419!2sgt!4v1684402921321!5m2!1ses-419!2sgt"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Mapa Hotel y Restaurante Montana"
+      ></iframe>
+    </section>
+
     <section id="contacto">
       <h2>Contacto</h2>
-      <p style="text-align:center; font-size:1.15rem; margin-bottom:15px;">
+      <p style="text-align:center; font-size:1.15rem; margin-bottom:15px; color:#f0e6b7;">
         ¿Quieres reservar o tienes alguna consulta? ¡Contáctanos directamente por WhatsApp!
       </p>
       <a
@@ -350,15 +541,31 @@
         class="boton-contacto"
         >Contactar por WhatsApp</a
       >
-      <p class="contacto-info" style="margin-top: 30px; text-align:center;">
+      <div class="botones-extras">
+        <a href="https://menumontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;">Menú del Restaurante</a>
+        <a href="https://numeroscuentapinomontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;">Números de Cuenta</a>
+        <a href="https://drive.google.com/file/d/1MpZDgN5MQ2XpqUitoMwwfBM6l3wc6Dgt/view" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;">Normativo del Hotel</a>
+      </div>
+      <p class="contacto-info" style="margin-top: 30px; text-align:center; color:#f0e6b7;">
         Dirección: <strong>Poptún, Petén, Barrio Las Tres Cruces Zona 2</strong><br />
         Teléfono: <strong>+502 4025-5881</strong><br />
-        Email: <a href="mailto:contacto@montana.com" style="color: var(--color-principal); text-decoration: none;">contacto@montana.com</a>
       </p>
     </section>
   </main>
   <footer>
     &copy; 2025 Hotel y Restaurante Montana - Todos los derechos reservados
   </footer>
+
+  <script>
+    // Parallax sutil en sección bienvenida: movimiento leve con mouse
+    const bienvenida = document.querySelector('#bienvenida .contenido');
+    document.addEventListener('mousemove', e => {
+      const x = (window.innerWidth / 2 - e.clientX) / 60;
+      const y = (window.innerHeight / 2 - e.clientY) / 60;
+      if(bienvenida) {
+        bienvenida.style.transform = `rotateY(${x}deg) rotateX(${y}deg) translateZ(10px)`;
+      }
+    });
+  </script>
 </body>
 </html>
