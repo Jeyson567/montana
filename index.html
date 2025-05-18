@@ -15,6 +15,8 @@
       --color-acento: #e3c454;
       --trans-duracion: 0.5s;
       --sombra-neon: 0 0 10px var(--color-principal), 0 0 20px var(--color-principal);
+      --header-height: 80px;
+      --header-min-height: 50px;
     }
 
     * {
@@ -33,51 +35,82 @@
       padding: 0 20px 40px;
       overflow-x: hidden;
       user-select: none;
+      transition: background-color 0.5s, color 0.5s;
     }
 
+    /* Tema claro */
+    body.light-theme {
+      --color-fondo: #fefefe;
+      --color-principal: #b38b00;
+      --color-secundario: #f0e6b7;
+      --color-texto: #111111;
+      --color-acento: #d4af37;
+      background: var(--color-fondo);
+      color: var(--color-texto);
+    }
+
+    /* Header base */
     header {
-      background: rgba(30, 30, 30, 0.9);
-      position: sticky;
+      position: fixed;
       top: 0;
-      z-index: 1000;
-      padding: 20px 30px;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: rgba(30, 30, 30, 0.95);
+      box-shadow: var(--sombra-neon);
+      backdrop-filter: saturate(180%) blur(10px);
       display: flex;
       justify-content: space-between;
       align-items: center;
-      box-shadow: var(--sombra-neon);
-      backdrop-filter: saturate(180%) blur(10px);
-      flex-wrap: wrap;
-      border-radius: 0 0 15px 15px;
+      padding: 0 30px;
+      z-index: 2000;
+      transition:
+        height 0.4s ease,
+        background-color 0.4s ease,
+        box-shadow 0.4s ease,
+        padding 0.4s ease;
+    }
+    /* Header pequeño cuando baja scroll */
+    header.shrink {
+      height: var(--header-min-height);
+      background: rgba(30, 30, 30, 0.85);
+      box-shadow: 0 0 8px var(--color-principal);
+      padding: 0 20px;
     }
 
     header h1 {
       font-family: 'Orbitron', sans-serif;
       font-weight: 500;
-      font-size: 2.8rem;
+      font-size: 2.4rem;
       color: var(--color-principal);
       letter-spacing: 3px;
       text-transform: uppercase;
       cursor: default;
       flex-grow: 1;
-      transition: text-shadow var(--trans-duracion);
-      text-shadow: 0 0 5px var(--color-principal);
+      transition: font-size 0.4s ease;
       user-select: text;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
-
-    header h1:hover {
-      text-shadow:
-        0 0 15px var(--color-acento),
-        0 0 25px var(--color-acento),
-        0 0 40px var(--color-acento);
-      color: var(--color-acento);
+    header.shrink h1 {
+      font-size: 1.6rem;
     }
 
     nav {
       display: flex;
       gap: 30px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       justify-content: flex-end;
-      flex-grow: 2;
+      flex-grow: 0;
+      align-items: center;
+      transition: opacity 0.4s ease;
+    }
+    /* Menú oculto en móvil (hamburguesa) */
+    nav.hide {
+      opacity: 0;
+      pointer-events: none;
+      user-select: none;
     }
 
     nav a {
@@ -90,6 +123,7 @@
       user-select: none;
       transition: color var(--trans-duracion), text-shadow var(--trans-duracion);
       padding: 4px 0;
+      white-space: nowrap;
     }
 
     nav a::after {
@@ -115,7 +149,7 @@
 
     main {
       max-width: 960px;
-      margin: 50px auto 70px;
+      margin: calc(var(--header-height) + 60px) auto 70px;
       display: flex;
       flex-direction: column;
       gap: 55px;
@@ -235,6 +269,7 @@
       border-radius: 15px 15px 0 0;
       letter-spacing: 0.05em;
       font-family: 'Orbitron', sans-serif;
+      margin-top: 40px;
     }
 
     /* Animaciones */
@@ -329,11 +364,11 @@
       width: 100%;
       height: 100%;
       border: none;
-      filter: grayscale(0.9) brightness(0.7) contrast(1.1);
+      filter: saturate(1.3) brightness(1.05) contrast(1.15);
       transition: filter 0.3s ease;
     }
     .mapa-container iframe:hover {
-      filter: grayscale(0.7) brightness(0.9) contrast(1.2);
+      filter: saturate(1.5) brightness(1.1) contrast(1.25);
     }
 
     /* Botones extras en contacto */
@@ -345,37 +380,111 @@
       margin-top: 20px;
     }
 
-    /* Responsive */
+    /* Menú hamburguesa para móvil */
+    .menu-hamburguesa {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      cursor: pointer;
+      width: 30px;
+      height: 22px;
+      gap: 5px;
+      user-select: none;
+      z-index: 2100;
+    }
+    .menu-hamburguesa div {
+      background: var(--color-principal);
+      height: 4px;
+      border-radius: 3px;
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+    .menu-hamburguesa.active div:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    .menu-hamburguesa.active div:nth-child(2) {
+      opacity: 0;
+    }
+    .menu-hamburguesa.active div:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+
+    /* Botón flotante WhatsApp */
+    #whatsappFloat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--color-principal);
+      color: #111;
+      padding: 16px;
+      border-radius: 50%;
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 0 15px var(--color-principal);
+      transition: box-shadow 0.3s ease;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+    #whatsappFloat:hover {
+      box-shadow: 0 0 25px var(--color-acento);
+    }
+
+    /* Botón toggle tema oscuro/claro */
+    #toggleTheme {
+      cursor: pointer;
+      background: none;
+      border: none;
+      color: var(--color-principal);
+      font-size: 1.6rem;
+      padding: 0 10px;
+      user-select: none;
+      transition: color 0.3s ease;
+      margin-left: 20px;
+    }
+    #toggleTheme:hover {
+      color: var(--color-acento);
+    }
 
     @media (max-width: 900px) {
       header h1 {
-        font-size: 2.2rem;
+        font-size: 2rem;
       }
 
       nav {
-        gap: 20px;
+        position: fixed;
+        top: var(--header-height);
+        right: 0;
+        background: rgba(30,30,30,0.95);
+        height: calc(100vh - var(--header-height));
+        width: 250px;
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 25px;
+        box-shadow: -2px 0 12px var(--color-principal);
+        border-radius: 0 0 0 15px;
+        transition: transform 0.4s ease;
+        transform: translateX(100%);
+        user-select: none;
       }
-
+      nav.show {
+        transform: translateX(0);
+      }
+      nav.hide {
+        opacity: 1;
+        pointer-events: auto;
+      }
       nav a {
-        font-size: 1rem;
+        font-size: 1.3rem;
+        white-space: normal;
       }
-
+      .menu-hamburguesa {
+        display: flex;
+      }
       main {
-        margin: 40px auto 50px;
-        max-width: 95%;
-      }
-
-      section h2 {
-        font-size: 2.2rem;
-      }
-
-      section p, ul li {
-        font-size: 1.1rem;
-      }
-
-      .boton-contacto {
+        margin: calc(var(--header-height) + 60px) 10px 70px;
         max-width: 100%;
-        font-size: 1.2rem;
       }
       .botones-extras {
         flex-direction: column;
@@ -385,50 +494,32 @@
 
     @media (max-width: 600px) {
       header {
-        padding: 15px 20px;
+        padding: 0 20px;
       }
-
       header h1 {
-        font-size: 1.8rem;
+        font-size: 1.5rem;
         letter-spacing: 1.5px;
       }
-
-      nav {
-        gap: 12px;
-        justify-content: center;
-      }
-
-      nav a {
-        font-size: 0.95rem;
-        padding: 6px 4px;
-      }
-
       main {
-        margin: 25px auto 40px;
+        margin: calc(var(--header-min-height) + 60px) 10px 40px;
       }
-
       section {
-        padding: 30px 25px;
+        padding: 30px 20px;
       }
-
       section h2 {
         font-size: 1.8rem;
         padding-bottom: 6px;
       }
-
       section p, ul li {
         font-size: 1rem;
       }
-
       .boton-contacto {
         padding: 14px 0;
         font-size: 1.1rem;
       }
-
       .estrellas {
         gap: 8px;
       }
-
       .estrella {
         font-size: 2rem;
       }
@@ -436,9 +527,9 @@
   </style>
 </head>
 <body>
-  <header>
-    <h1>Hotel y Restaurante Montana</h1>
-    <nav>
+  <header id="header">
+    <h1 title="Hotel y Restaurante Montana">Hotel y Restaurante Montana</h1>
+    <nav id="navMenu">
       <a href="#bienvenida">Bienvenida</a>
       <a href="#alojamiento">Alojamiento</a>
       <a href="#restaurante">Restaurante</a>
@@ -446,6 +537,10 @@
       <a href="#piscina">Piscina</a>
       <a href="#contacto">Contacto</a>
     </nav>
+    <button id="toggleTheme" aria-label="Cambiar tema oscuro o claro" title="Alternar modo oscuro/claro">🌙</button>
+    <div id="hamburguesa" class="menu-hamburguesa" aria-label="Abrir menú de navegación" tabindex="0" role="button" aria-expanded="false" aria-controls="navMenu">
+      <div></div><div></div><div></div>
+    </div>
   </header>
   <main>
     <section id="bienvenida" aria-label="Bienvenida">
@@ -459,7 +554,10 @@
           <span class="estrella" aria-hidden="true">&#9733;</span>
         </div>
         <p>
-          Descubre el equilibrio perfecto entre naturaleza y confort en Hotel y Restaurante Montana. Ubicados en el corazón de Poptún, Petén, te invitamos a vivir una experiencia inolvidable, donde cada detalle está pensado para tu bienestar.
+          Descubre el equilibrio perfecto entre naturaleza y confort en Hotel y Restaurante Montana. Ubicados en el corazón de Poptún, Petén, te invitamos a vivir una experiencia inolvidable, donde cada detalle está pensado para tu bienestar y confort.
+        </p>
+        <p>
+          Nuestro compromiso es brindarte una estancia inolvidable, combinando lujo, atención personalizada y un ambiente cálido y elegante. Explora nuestras instalaciones, disfruta de la gastronomía local e internacional y crea recuerdos imborrables en un entorno natural único.
         </p>
       </div>
     </section>
@@ -469,12 +567,15 @@
       <p>
         Disfruta de nuestras cómodas habitaciones, diseñadas para ofrecerte un descanso reparador y todas las comodidades que mereces. Ya sea que viajes solo, en pareja o en familia, contamos con espacios ideales para ti.
       </p>
+      <p>
+        Cada habitación está equipada con mobiliario moderno, control de clima, y conexión Wi-Fi de alta velocidad para que tu experiencia sea perfecta tanto para relajarte como para trabajar.
+      </p>
       <ul>
-        <li>Habitaciones individuales, dobles y suites familiares.</li>
-        <li>Baño privado con agua caliente.</li>
-        <li>Wi-Fi gratuito en todo el hotel.</li>
-        <li>Áreas verdes y zonas de descanso para relajarte.</li>
-        <li>Servicio de lavandería y atención personalizada.</li>
+        <li>Habitaciones individuales, dobles y suites familiares con decoración elegante.</li>
+        <li>Baño privado con agua caliente y amenidades premium.</li>
+        <li>Wi-Fi gratuito y estable en todas las áreas del hotel.</li>
+        <li>Áreas verdes y zonas de descanso para relajarte y desconectar.</li>
+        <li>Servicio de lavandería y atención personalizada las 24 horas.</li>
       </ul>
     </section>
 
@@ -483,11 +584,14 @@
       <p>
         Deléitate con nuestra variedad gastronómica que combina sabores típicos de la región con platillos internacionales. Nuestro restaurante ofrece un ambiente acogedor y atención excepcional para que cada comida sea una experiencia memorable.
       </p>
+      <p>
+        Contamos con chefs expertos que preparan diariamente menús frescos y deliciosos, atendiendo a todas las preferencias, incluyendo opciones vegetarianas y para personas con restricciones alimenticias.
+      </p>
       <ul>
-        <li>Desayunos buffet nutritivos y variados.</li>
-        <li>Menú a la carta con opciones vegetarianas y especiales.</li>
-        <li>Ingredientes frescos y de calidad.</li>
-        <li>Ambiente familiar y cordial.</li>
+        <li>Desayunos buffet nutritivos y variados para empezar bien el día.</li>
+        <li>Menú a la carta con opciones vegetarianas y especiales gourmet.</li>
+        <li>Ingredientes frescos, locales y de la mejor calidad.</li>
+        <li>Ambiente familiar, cordial y música en vivo en ocasiones especiales.</li>
       </ul>
     </section>
 
@@ -496,11 +600,14 @@
       <p>
         Celebra tus momentos más importantes en un espacio versátil y equipado para eventos sociales y corporativos. Nuestro equipo te brindará asesoría completa para que tu celebración sea un éxito inolvidable.
       </p>
+      <p>
+        Desde bodas íntimas hasta grandes conferencias, disponemos de salones adaptables con tecnología audiovisual y catering personalizado.
+      </p>
       <ul>
-        <li>Bodas, cumpleaños y aniversarios.</li>
-        <li>Reuniones empresariales y capacitaciones.</li>
-        <li>Eventos culturales y comunitarios.</li>
-        <li>Servicio de catering personalizado.</li>
+        <li>Bodas, cumpleaños y aniversarios con atención dedicada.</li>
+        <li>Reuniones empresariales, capacitaciones y lanzamientos de productos.</li>
+        <li>Eventos culturales, artísticos y comunitarios con apoyo logístico.</li>
+        <li>Servicio de catering personalizado y decoración temática.</li>
       </ul>
     </section>
 
@@ -510,9 +617,9 @@
         Relájate en nuestra refrescante piscina con cascada, ideal para descansar y disfrutar del ambiente natural. Además, contamos con áreas recreativas para que grandes y chicos vivan momentos de diversión y tranquilidad.
       </p>
       <ul>
-        <li>Piscina limpia y segura para toda la familia.</li>
-        <li>Zonas de descanso con sombra y mobiliario cómodo.</li>
-        <li>Espacios para juegos y actividades al aire libre.</li>
+        <li>Piscina limpia, climatizada y segura para toda la familia.</li>
+        <li>Zonas de descanso con sombra, mobiliario cómodo y vistas panorámicas.</li>
+        <li>Espacios para juegos y actividades al aire libre, como senderismo y picnic.</li>
       </ul>
       <a href="https://galeriagranmontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="margin-top: 25px;">
         Ver Galería de Fotos
@@ -566,6 +673,66 @@
         bienvenida.style.transform = `rotateY(${x}deg) rotateX(${y}deg) translateZ(10px)`;
       }
     });
+
+    // Header que se minimiza al hacer scroll
+    const header = document.getElementById('header');
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+      const st = window.pageYOffset || document.documentElement.scrollTop;
+      if(st > 50) {
+        header.classList.add('shrink');
+      } else {
+        header.classList.remove('shrink');
+      }
+      lastScrollTop = st <= 0 ? 0 : st;
+    });
+
+    // Menú hamburguesa
+    const hamburguesa = document.getElementById('hamburguesa');
+    const navMenu = document.getElementById('navMenu');
+
+    hamburguesa.addEventListener('click', () => {
+      hamburguesa.classList.toggle('active');
+      navMenu.classList.toggle('show');
+    });
+
+    // Accesibilidad para menú hamburguesa con teclado
+    hamburguesa.addEventListener('keydown', e => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        hamburguesa.click();
+      }
+    });
+
+    // Toggle tema oscuro/claro
+    const toggleBtn = document.getElementById('toggleTheme');
+    const body = document.body;
+
+    // Inicializa tema con preferencia guardada o por defecto oscuro
+    if(localStorage.getItem('theme') === 'light') {
+      body.classList.add('light-theme');
+      toggleBtn.textContent = '☀️';
+    } else {
+      toggleBtn.textContent = '🌙';
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      if(body.classList.contains('light-theme')) {
+        body.classList.remove('light-theme');
+        localStorage.setItem('theme', 'dark');
+        toggleBtn.textContent = '🌙';
+      } else {
+        body.classList.add('light-theme');
+        localStorage.setItem('theme', 'light');
+        toggleBtn.textContent = '☀️';
+      }
+    });
   </script>
+
+  <!-- Botón flotante WhatsApp -->
+  <a href="https://wa.me/50240255881" target="_blank" aria-label="Contactar por WhatsApp" id="whatsappFloat" title="Contactar por WhatsApp">
+    📱
+  </a>
+
 </body>
 </html>
