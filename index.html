@@ -9,12 +9,12 @@
 
     :root {
       --color-fondo: #0a0a0a;
-      --color-principal: #d4af37; /* dorado */
+      --color-principal: #b38b00; /* dorado más cálido y menos brillante */
       --color-secundario: #1c1c1c;
       --color-texto: #f9f9f9;
-      --color-acento: #e3c454;
+      --color-acento: #d4af37; /* acento dorado original */
       --trans-duracion: 0.5s;
-      --sombra-neon: 0 0 10px var(--color-principal), 0 0 20px var(--color-principal);
+      --sombra-neon: 0 0 6px rgba(179, 139, 0, 0.6), 0 0 12px rgba(179, 139, 0, 0.4);
       --header-height: 80px;
       --header-min-height: 50px;
     }
@@ -74,7 +74,7 @@
     header.shrink {
       height: var(--header-min-height);
       background: rgba(30, 30, 30, 0.85);
-      box-shadow: 0 0 8px var(--color-principal);
+      box-shadow: 0 0 5px rgba(179, 139, 0, 0.5);
       padding: 0 20px;
     }
 
@@ -92,6 +92,7 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
     }
     header.shrink h1 {
       font-size: 1.6rem;
@@ -124,6 +125,7 @@
       transition: color var(--trans-duracion), text-shadow var(--trans-duracion);
       padding: 4px 0;
       white-space: nowrap;
+      text-shadow: none;
     }
 
     nav a::after {
@@ -140,7 +142,7 @@
 
     nav a:hover {
       color: var(--color-principal);
-      text-shadow: 0 0 8px var(--color-principal);
+      text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
     }
 
     nav a:hover::after {
@@ -186,7 +188,7 @@
       letter-spacing: 1.5px;
       border-bottom: 3px solid var(--color-principal);
       padding-bottom: 10px;
-      text-shadow: 0 0 10px var(--color-principal);
+      text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
       user-select: none;
     }
 
@@ -208,7 +210,7 @@
 
     ul li {
       padding: 12px 0;
-      border-bottom: 1px solid #d4af3766;
+      border-bottom: 1px solid #b38b0066; /* menos saturado */
       cursor: default;
       transition: color var(--trans-duracion);
       letter-spacing: 0.02em;
@@ -221,7 +223,7 @@
 
     ul li:hover {
       color: var(--color-acento);
-      text-shadow: 0 0 10px var(--color-acento);
+      text-shadow: 0 0 6px rgba(212, 175, 55, 0.7);
     }
 
     /* Botones */
@@ -242,8 +244,8 @@
       text-decoration: none;
       user-select: none;
       box-shadow:
-        0 0 8px var(--color-principal),
-        0 0 20px var(--color-acento);
+        0 0 5px rgba(179, 139, 0, 0.6),
+        0 0 15px rgba(179, 139, 0, 0.4);
       transition: background-position 0.6s ease, box-shadow 0.4s ease;
       letter-spacing: 0.05em;
     }
@@ -251,11 +253,11 @@
     .boton-contacto:hover {
       background-position: 100% 0;
       box-shadow:
-        0 0 12px var(--color-acento),
-        0 0 25px var(--color-principal),
-        0 0 30px var(--color-principal);
+        0 0 10px rgba(179, 139, 0, 0.7),
+        0 0 20px rgba(179, 139, 0, 0.5),
+        0 0 25px rgba(179, 139, 0, 0.5);
       color: var(--color-fondo);
-      text-shadow: 0 0 5px var(--color-principal);
+      text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
     }
 
     footer {
@@ -265,7 +267,7 @@
       font-size: 1rem;
       color: var(--color-texto);
       user-select: none;
-      box-shadow: inset 0 2px 5px var(--color-principal);
+      box-shadow: inset 0 2px 5px rgba(179, 139, 0, 0.5);
       border-radius: 15px 15px 0 0;
       letter-spacing: 0.05em;
       font-family: 'Orbitron', sans-serif;
@@ -308,9 +310,9 @@
       animation: brillar 2s infinite alternate ease-in-out;
       cursor: default;
       user-select: none;
-      text-shadow: 0 0 8px var(--color-acento);
+      text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
       transform-origin: center;
-      filter: drop-shadow(0 0 6px var(--color-principal));
+      filter: drop-shadow(0 0 4px rgba(179, 139, 0, 0.5));
     }
 
     .estrella:nth-child(odd) {
@@ -322,17 +324,17 @@
 
     @keyframes brillar {
       0% {
-        filter: drop-shadow(0 0 6px var(--color-acento));
+        filter: drop-shadow(0 0 4px rgba(179, 139, 0, 0.5));
         opacity: 0.7;
         transform: scale(1);
       }
       50% {
-        filter: drop-shadow(0 0 14px var(--color-acento));
+        filter: drop-shadow(0 0 10px rgba(179, 139, 0, 0.7));
         opacity: 1;
-        transform: scale(1.1);
+        transform: scale(1.05);
       }
       100% {
-        filter: drop-shadow(0 0 6px var(--color-acento));
+        filter: drop-shadow(0 0 4px rgba(179, 139, 0, 0.5));
         opacity: 0.7;
         transform: scale(1);
       }
@@ -356,7 +358,7 @@
       height: 350px;
       border-radius: 20px;
       overflow: hidden;
-      box-shadow: 0 0 20px var(--color-principal);
+      box-shadow: 0 0 15px rgba(179, 139, 0, 0.5);
       border: 3px solid var(--color-principal);
     }
 
@@ -419,7 +421,7 @@
       border-radius: 50%;
       font-size: 24px;
       text-decoration: none;
-      box-shadow: 0 0 15px var(--color-principal);
+      box-shadow: 0 0 15px rgba(179, 139, 0, 0.5);
       transition: box-shadow 0.3s ease;
       z-index: 9999;
       display: flex;
@@ -428,7 +430,7 @@
       user-select: none;
     }
     #whatsappFloat:hover {
-      box-shadow: 0 0 25px var(--color-acento);
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
     }
 
     /* Botón toggle tema oscuro/claro */
