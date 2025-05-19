@@ -9,10 +9,10 @@
 
     :root {
       --color-fondo: #0a0a0a;
-      --color-principal: #b38b00; /* dorado más cálido y menos brillante */
+      --color-principal: #b38b00;
       --color-secundario: #1c1c1c;
       --color-texto: #f9f9f9;
-      --color-acento: #d4af37; /* acento dorado original */
+      --color-acento: #d4af37;
       --trans-duracion: 0.5s;
       --sombra-neon: 0 0 6px rgba(179, 139, 0, 0.6), 0 0 12px rgba(179, 139, 0, 0.4);
       --header-height: 80px;
@@ -38,7 +38,6 @@
       transition: background-color 0.5s, color 0.5s;
     }
 
-    /* Tema claro */
     body.light-theme {
       --color-fondo: #fefefe;
       --color-principal: #b38b00;
@@ -49,7 +48,6 @@
       color: var(--color-texto);
     }
 
-    /* Header base */
     header {
       position: fixed;
       top: 0;
@@ -70,7 +68,6 @@
         box-shadow 0.4s ease,
         padding 0.4s ease;
     }
-    /* Header pequeño cuando baja scroll */
     header.shrink {
       height: var(--header-min-height);
       background: rgba(30, 30, 30, 0.85);
@@ -107,7 +104,6 @@
       align-items: center;
       transition: opacity 0.4s ease;
     }
-    /* Menú oculto en móvil (hamburguesa) */
     nav.hide {
       opacity: 0;
       pointer-events: none;
@@ -210,7 +206,7 @@
 
     ul li {
       padding: 12px 0;
-      border-bottom: 1px solid #b38b0066; /* menos saturado */
+      border-bottom: 1px solid #b38b0066;
       cursor: default;
       transition: color var(--trans-duracion);
       letter-spacing: 0.02em;
@@ -226,7 +222,6 @@
       text-shadow: 0 0 6px rgba(212, 175, 55, 0.7);
     }
 
-    /* Botones */
     .boton-contacto {
       display: inline-block;
       width: 100%;
@@ -274,8 +269,6 @@
       margin-top: 40px;
     }
 
-    /* Animaciones */
-
     @keyframes fadeUp {
       to {
         opacity: 1;
@@ -294,7 +287,6 @@
       }
     }
 
-    /* Estrellas con brillo y movimiento */
     .estrellas {
       display: flex;
       justify-content: center;
@@ -340,7 +332,6 @@
       }
     }
 
-    /* Parallax sutil en sección bienvenida */
     #bienvenida {
       perspective: 800px;
       position: relative;
@@ -351,7 +342,6 @@
       will-change: transform;
     }
 
-    /* Estilos del mapa */
     .mapa-container {
       margin: 40px auto;
       max-width: 960px;
@@ -373,7 +363,6 @@
       filter: saturate(1.5) brightness(1.1) contrast(1.25);
     }
 
-    /* Botones extras en contacto */
     .botones-extras {
       display: flex;
       flex-wrap: wrap;
@@ -382,7 +371,6 @@
       margin-top: 20px;
     }
 
-    /* Menú hamburguesa para móvil */
     .menu-hamburguesa {
       display: none;
       flex-direction: column;
@@ -410,121 +398,27 @@
       transform: translateY(-9px) rotate(-45deg);
     }
 
-    /* Botón flotante WhatsApp */
-    #whatsappFloat {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--color-principal);
-      color: #111;
-      padding: 16px;
-      border-radius: 50%;
-      font-size: 24px;
-      text-decoration: none;
-      box-shadow: 0 0 15px rgba(179, 139, 0, 0.5);
-      transition: box-shadow 0.3s ease;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
+    .imagenes-seccion {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
     }
-    #whatsappFloat:hover {
-      box-shadow: 0 0 20px rgba(212, 175, 55, 0.7);
-    }
-
-    /* Botón toggle tema oscuro/claro */
-    #toggleTheme {
+    .imagenes-seccion img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow:
+        0 0 10px var(--color-principal),
+        inset 0 0 10px var(--color-principal);
+      transition: transform 0.3s ease;
       cursor: pointer;
-      background: none;
-      border: none;
-      color: var(--color-principal);
-      font-size: 1.6rem;
-      padding: 0 10px;
       user-select: none;
-      transition: color 0.3s ease;
-      margin-left: 20px;
     }
-    #toggleTheme:hover {
-      color: var(--color-acento);
-    }
-
-    @media (max-width: 900px) {
-      header h1 {
-        font-size: 2rem;
-      }
-
-      nav {
-        position: fixed;
-        top: var(--header-height);
-        right: 0;
-        background: rgba(30,30,30,0.95);
-        height: calc(100vh - var(--header-height));
-        width: 250px;
-        flex-direction: column;
-        padding: 30px 20px;
-        gap: 25px;
-        box-shadow: -2px 0 12px var(--color-principal);
-        border-radius: 0 0 0 15px;
-        transition: transform 0.4s ease;
-        transform: translateX(100%);
-        user-select: none;
-      }
-      nav.show {
-        transform: translateX(0);
-      }
-      nav.hide {
-        opacity: 1;
-        pointer-events: auto;
-      }
-      nav a {
-        font-size: 1.3rem;
-        white-space: normal;
-      }
-      .menu-hamburguesa {
-        display: flex;
-      }
-      main {
-        margin: calc(var(--header-height) + 60px) 10px 70px;
-        max-width: 100%;
-      }
-      .botones-extras {
-        flex-direction: column;
-        gap: 15px;
-      }
-    }
-
-    @media (max-width: 600px) {
-      header {
-        padding: 0 20px;
-      }
-      header h1 {
-        font-size: 1.5rem;
-        letter-spacing: 1.5px;
-      }
-      main {
-        margin: calc(var(--header-min-height) + 60px) 10px 40px;
-      }
-      section {
-        padding: 30px 20px;
-      }
-      section h2 {
-        font-size: 1.8rem;
-        padding-bottom: 6px;
-      }
-      section p, ul li {
-        font-size: 1rem;
-      }
-      .boton-contacto {
-        padding: 14px 0;
-        font-size: 1.1rem;
-      }
-      .estrellas {
-        gap: 8px;
-      }
-      .estrella {
-        font-size: 2rem;
-      }
+    .imagenes-seccion img:hover {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 15px var(--color-acento),
+        inset 0 0 15px var(--color-acento);
     }
   </style>
 </head>
@@ -572,6 +466,13 @@
       <p>
         Cada habitación está equipada con mobiliario moderno, control de clima, y conexión Wi-Fi de alta velocidad para que tu experiencia sea perfecta tanto para relajarte como para trabajar.
       </p>
+      <div class="imagenes-seccion">
+        <img src="https://i.imgur.com/V3riEI9.jpg" alt="Habitación cómoda y elegante" loading="lazy" />
+        <img src="https://i.imgur.com/okTVXYN.jpg" alt="Habitación doble moderna" loading="lazy" />
+        <img src="https://i.imgur.com/tieKydi.jpg" alt="Pasillos y áreas comunes de habitaciones" loading="lazy" />
+        <img src="https://i.imgur.com/wbRH7lU.jpg" alt="Área exterior y jardín para descanso" loading="lazy" />
+        <img src="https://i.imgur.com/SGOB5uZ.jpg" alt="Lobby del hotel" loading="lazy" />
+      </div>
       <ul>
         <li>Habitaciones individuales, dobles y suites familiares con decoración elegante.</li>
         <li>Baño privado con agua caliente y amenidades premium.</li>
@@ -589,10 +490,16 @@
       <p>
         Contamos con chefs expertos que preparan diariamente menús frescos y deliciosos, atendiendo a todas las preferencias, incluyendo opciones vegetarianas y para personas con restricciones alimenticias.
       </p>
+      <div class="imagenes-seccion">
+        <img src="https://i.imgur.com/FWTbnlw.jpg" alt="Plato gourmet servido en restaurante" loading="lazy" />
+        <img src="https://i.imgur.com/n2acC7h.jpg" alt="Ambiente del restaurante" loading="lazy" />
+        <img src="https://i.imgur.com/jyXDiWF.jpg" alt="Interior restaurante o mesas" loading="lazy" />
+        <img src="https://i.imgur.com/PpW72tX.jpg" alt="Área social del restaurante" loading="lazy" />
+      </div>
       <ul>
-        <li>Desayunos buffet nutritivos y variados para empezar bien el día.</li>
-        <li>Menú a la carta con opciones vegetarianas y especiales gourmet.</li>
-        <li>Ingredientes frescos, locales y de la mejor calidad.</li>
+        <li>Desayunos nutritivos y variados para empezar bien el día.</li>
+        <li>Menú a la carta con opciones vegetarianas.</li>
+        <li>Ingredientes frescos, de la mejor calidad.</li>
         <li>Ambiente familiar, cordial y música en vivo en ocasiones especiales.</li>
       </ul>
     </section>
@@ -603,10 +510,14 @@
         Celebra tus momentos más importantes en un espacio versátil y equipado para eventos sociales y corporativos. Nuestro equipo te brindará asesoría completa para que tu celebración sea un éxito inolvidable.
       </p>
       <p>
-        Desde bodas íntimas hasta grandes conferencias, disponemos de salones adaptables con tecnología audiovisual y catering personalizado.
+        Disponemos de salones adaptables con tecnología audiovisual y catering personalizado para tus reuniones empresariales, capacitaciones y lanzamientos de productos.
       </p>
+      <div class="imagenes-seccion">
+        <img src="https://i.imgur.com/ExG3ZAN.jpg" alt="Vista panorámica del hotel y áreas para eventos" loading="lazy" />
+        <img src="https://i.imgur.com/bPTtyNL.jpg" alt="Área de descanso o salón para eventos" loading="lazy" />
+        <img src="https://i.imgur.com/O5ThIyX.jpg" alt="Entrada o área social para eventos" loading="lazy" />
+      </div>
       <ul>
-        <li>Bodas, cumpleaños y aniversarios con atención dedicada.</li>
         <li>Reuniones empresariales, capacitaciones y lanzamientos de productos.</li>
         <li>Eventos culturales, artísticos y comunitarios con apoyo logístico.</li>
         <li>Servicio de catering personalizado y decoración temática.</li>
@@ -616,16 +527,16 @@
     <section id="piscina">
       <h2>Piscina y Áreas Recreativas</h2>
       <p>
-        Relájate en nuestra refrescante piscina con cascada, ideal para descansar y disfrutar del ambiente natural. Además, contamos con áreas recreativas para que grandes y chicos vivan momentos de diversión y tranquilidad.
+        Relájate en nuestra refrescante piscina, segura para toda la familia. Además, contamos con zonas de descanso con sombra para que disfrutes del ambiente natural con comodidad.
       </p>
+      <div class="imagenes-seccion">
+        <img src="https://i.imgur.com/nYvjxGR.jpg" alt="Piscina segura para toda la familia" loading="lazy" />
+        <img src="https://i.imgur.com/bPTtyNL.jpg" alt="Área de descanso junto a la piscina" loading="lazy" />
+      </div>
       <ul>
-        <li>Piscina limpia, climatizada y segura para toda la familia.</li>
+        <li>Piscina limpia, segura y apta para toda la familia.</li>
         <li>Zonas de descanso con sombra, mobiliario cómodo y vistas panorámicas.</li>
-        <li>Espacios para juegos y actividades al aire libre, como senderismo y picnic.</li>
       </ul>
-      <a href="https://galeriagranmontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="margin-top: 25px;">
-        Ver Galería de Fotos
-      </a>
     </section>
 
     <section class="mapa-container" aria-label="Ubicación del Gran Montana Hotel, Restaurante &amp; Steakhouse en Google Maps">
@@ -643,13 +554,9 @@
       <p style="text-align:center; font-size:1.15rem; margin-bottom:15px; color:#f0e6b7;">
         ¿Quieres reservar o tienes alguna consulta? ¡Contáctanos directamente por WhatsApp!
       </p>
-      <a
-        href="https://wa.me/50240255881"
-        target="_blank"
-        rel="noopener"
-        class="boton-contacto"
-        >Contactar por WhatsApp</a
-      >
+      <a href="https://wa.me/50240255881" target="_blank" rel="noopener" class="boton-contacto">
+        Contactar por WhatsApp
+      </a>
       <div class="botones-extras">
         <a href="https://menumontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;">Menú del Restaurante</a>
         <a href="https://numeroscuentapinomontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;">Números de Cuenta</a>
@@ -661,12 +568,12 @@
       </p>
     </section>
   </main>
+
   <footer>
     &copy; 2025 Gran Montana Hotel, Restaurante &amp; Steakhouse - Todos los derechos reservados
   </footer>
 
   <script>
-    // Parallax sutil en sección bienvenida: movimiento leve con mouse
     const bienvenida = document.querySelector('#bienvenida .contenido');
     document.addEventListener('mousemove', e => {
       const x = (window.innerWidth / 2 - e.clientX) / 60;
@@ -676,7 +583,6 @@
       }
     });
 
-    // Header que se minimiza al hacer scroll
     const header = document.getElementById('header');
     let lastScrollTop = 0;
     window.addEventListener('scroll', () => {
@@ -689,7 +595,6 @@
       lastScrollTop = st <= 0 ? 0 : st;
     });
 
-    // Menú hamburguesa
     const hamburguesa = document.getElementById('hamburguesa');
     const navMenu = document.getElementById('navMenu');
 
@@ -698,7 +603,6 @@
       navMenu.classList.toggle('show');
     });
 
-    // Accesibilidad para menú hamburguesa con teclado
     hamburguesa.addEventListener('keydown', e => {
       if(e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
@@ -706,11 +610,9 @@
       }
     });
 
-    // Toggle tema oscuro/claro
     const toggleBtn = document.getElementById('toggleTheme');
     const body = document.body;
 
-    // Inicializa tema con preferencia guardada o por defecto oscuro
     if(localStorage.getItem('theme') === 'light') {
       body.classList.add('light-theme');
       toggleBtn.textContent = '☀️';
@@ -731,8 +633,7 @@
     });
   </script>
 
-  <!-- Botón flotante WhatsApp -->
-  <a href="https://wa.me/50240255881" target="_blank" aria-label="Contactar por WhatsApp" id="whatsappFloat" title="Contactar por WhatsApp">
+  <a href="https://wa.me/50240255881" target="_blank" aria-label="Contactar por WhatsApp" id="whatsappFloat" title="Contactar por WhatsApp" style="position: fixed; bottom: 20px; right: 20px; background: var(--color-principal); color: #111; padding: 16px; border-radius: 50%; font-size: 24px; text-decoration: none; box-shadow: 0 0 15px rgba(179, 139, 0, 0.5); transition: box-shadow 0.3s ease; z-index: 9999; display: flex; align-items: center; justify-content: center; user-select: none;">
     📱
   </a>
 
