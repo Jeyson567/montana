@@ -95,54 +95,33 @@
       font-size: 1.6rem;
     }
 
+    /* Menú vertical, visible siempre */
     nav {
-      display: flex;
-      gap: 30px;
-      flex-wrap: nowrap;
-      justify-content: flex-end;
-      flex-grow: 0;
-      align-items: center;
-      transition: opacity 0.4s ease;
-    }
-    nav.hide {
-      opacity: 0;
-      pointer-events: none;
-      user-select: none;
+      display: block;
+      padding: 10px 0;
+      margin-left: 20px;
     }
 
     nav a {
+      display: block;
+      padding: 8px 0;
       font-family: 'Orbitron', sans-serif;
       color: var(--color-texto);
       text-decoration: none;
       font-weight: 600;
-      font-size: 1.1rem;
-      position: relative;
+      font-size: 1.3rem;
       user-select: none;
       transition: color var(--trans-duracion), text-shadow var(--trans-duracion);
-      padding: 4px 0;
-      white-space: nowrap;
-      text-shadow: none;
+      border-bottom: 1px solid var(--color-secundario);
     }
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -6px;
-      left: 0;
-      background-color: var(--color-principal);
-      transition: width var(--trans-duracion);
-      border-radius: 4px;
+    nav a:last-child {
+      border-bottom: none;
     }
 
     nav a:hover {
       color: var(--color-principal);
       text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
-    }
-
-    nav a:hover::after {
-      width: 100%;
     }
 
     main {
@@ -371,32 +350,7 @@
       margin-top: 20px;
     }
 
-    .menu-hamburguesa {
-      display: none;
-      flex-direction: column;
-      justify-content: center;
-      cursor: pointer;
-      width: 30px;
-      height: 22px;
-      gap: 5px;
-      user-select: none;
-      z-index: 2100;
-    }
-    .menu-hamburguesa div {
-      background: var(--color-principal);
-      height: 4px;
-      border-radius: 3px;
-      transition: transform 0.3s ease, opacity 0.3s ease;
-    }
-    .menu-hamburguesa.active div:nth-child(1) {
-      transform: translateY(9px) rotate(45deg);
-    }
-    .menu-hamburguesa.active div:nth-child(2) {
-      opacity: 0;
-    }
-    .menu-hamburguesa.active div:nth-child(3) {
-      transform: translateY(-9px) rotate(-45deg);
-    }
+    /* Se elimina .menu-hamburguesa */
 
     .imagenes-seccion {
       display: grid;
@@ -434,9 +388,7 @@
       <a href="#contacto">Contacto</a>
     </nav>
     <button id="toggleTheme" aria-label="Cambiar tema oscuro o claro" title="Alternar modo oscuro/claro">🌙</button>
-    <div id="hamburguesa" class="menu-hamburguesa" aria-label="Abrir menú de navegación" tabindex="0" role="button" aria-expanded="false" aria-controls="navMenu">
-      <div></div><div></div><div></div>
-    </div>
+    <!-- Botón hamburguesa eliminado -->
   </header>
   <main>
     <section id="bienvenida" aria-label="Bienvenida">
@@ -497,9 +449,9 @@
         <img src="https://i.imgur.com/PpW72tX.jpg" alt="Área social del restaurante" loading="lazy" />
       </div>
       <ul>
-        <li>Desayunos nutritivos y variados para empezar bien el día.</li>
-        <li>Menú a la carta con opciones vegetarianas.</li>
-        <li>Ingredientes frescos, de la mejor calidad.</li>
+        <li>Desayunos buffet nutritivos y variados para empezar bien el día.</li>
+        <li>Menú a la carta con opciones vegetarianas y especiales gourmet.</li>
+        <li>Ingredientes frescos, locales y de la mejor calidad.</li>
         <li>Ambiente familiar, cordial y música en vivo en ocasiones especiales.</li>
       </ul>
     </section>
@@ -593,21 +545,6 @@
         header.classList.remove('shrink');
       }
       lastScrollTop = st <= 0 ? 0 : st;
-    });
-
-    const hamburguesa = document.getElementById('hamburguesa');
-    const navMenu = document.getElementById('navMenu');
-
-    hamburguesa.addEventListener('click', () => {
-      hamburguesa.classList.toggle('active');
-      navMenu.classList.toggle('show');
-    });
-
-    hamburguesa.addEventListener('keydown', e => {
-      if(e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        hamburguesa.click();
-      }
     });
 
     const toggleBtn = document.getElementById('toggleTheme');
