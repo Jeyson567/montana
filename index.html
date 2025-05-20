@@ -17,9 +17,10 @@
       --sombra-neon: 0 0 6px rgba(179, 139, 0, 0.6), 0 0 12px rgba(179, 139, 0, 0.4);
       --header-height: 80px;
       --header-min-height: 50px;
+      --max-ancho: 1100px;
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -37,7 +38,6 @@
       user-select: none;
       transition: background-color 0.5s, color 0.5s;
     }
-
     body.light-theme {
       --color-fondo: #fefefe;
       --color-principal: #b38b00;
@@ -48,11 +48,10 @@
       color: var(--color-texto);
     }
 
+    /* Header fijo y responsive */
     header {
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      top: 0; left: 0; right: 0;
       height: var(--header-height);
       background: rgba(30, 30, 30, 0.95);
       box-shadow: var(--sombra-neon);
@@ -73,7 +72,6 @@
       box-shadow: 0 0 5px rgba(179, 139, 0, 0.5);
       padding: 0 20px;
     }
-
     header h1 {
       font-family: 'Orbitron', sans-serif;
       font-weight: 500;
@@ -93,60 +91,164 @@
     header.shrink h1 {
       font-size: 1.6rem;
     }
-
-    /* Menú normal, no sticky, ancho aumentado */
-    #opciones {
-      background: rgba(30, 30, 30, 0.9);
-      padding: 15px 40px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
-      user-select: none;
-      margin-top: var(--header-height);
-      max-width: 1100px;
-      margin-left: auto;
-      margin-right: auto;
-      z-index: 1000;
-    }
-
-    #opciones h2 {
-      color: var(--color-principal);
-      font-family: 'Orbitron', sans-serif;
+    #toggleTheme {
+      background: transparent;
+      border: none;
       font-size: 1.8rem;
-      margin-bottom: 12px;
-    }
-
-    #opciones nav a {
-      display: block;
-      padding: 8px 0;
-      font-family: 'Orbitron', sans-serif;
-      color: var(--color-texto);
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.2rem;
-      border-bottom: 1px solid var(--color-secundario);
-      transition: color var(--trans-duracion), text-shadow var(--trans-duracion);
-    }
-
-    #opciones nav a:last-child {
-      border-bottom: none;
-    }
-
-    #opciones nav a:hover {
       color: var(--color-principal);
-      text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
+      cursor: pointer;
+      user-select: none;
+      transition: color 0.3s ease;
+      margin-right: 12px;
+    }
+    #toggleTheme:hover, #toggleTheme:focus {
+      color: var(--color-acento);
+      outline: none;
+    }
+    #btnCerrarMenu {
+      background: transparent;
+      border: none;
+      font-size: 2rem;
+      color: var(--color-principal);
+      cursor: pointer;
+      user-select: none;
+      display: none;
+      transition: color 0.3s ease;
+    }
+    #btnCerrarMenu:hover, #btnCerrarMenu:focus {
+      color: var(--color-acento);
+      outline: none;
     }
 
+    /* Contenedor general */
     main {
-      margin-top: 20px;
-      max-width: 1100px;
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 20px 40px;
+      max-width: var(--max-ancho);
+      margin: calc(var(--header-height) + 20px) auto 40px auto;
+      padding: 0 20px;
       display: flex;
       flex-direction: column;
       gap: 55px;
       animation: fadeInUp 1s ease forwards;
     }
 
+    /* Menú lateral para desktop */
+    #opciones {
+      position: fixed;
+      top: var(--header-height);
+      left: 0;
+      width: 220px;
+      height: calc(100vh - var(--header-height));
+      background: rgba(30, 30, 30, 0.9);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+      padding: 20px 15px;
+      overflow-y: auto;
+      user-select: none;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      z-index: 1500;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    #opciones h2 {
+      color: var(--color-principal);
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      user-select: none;
+    }
+    #opciones nav {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    #opciones nav a {
+      display: block;
+      padding: 10px 12px;
+      font-family: 'Orbitron', sans-serif;
+      color: var(--color-texto);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.15rem;
+      border-radius: 8px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    #opciones nav a:hover,
+    #opciones nav a:focus {
+      background-color: var(--color-principal);
+      color: var(--color-fondo);
+      outline: none;
+      box-shadow: 0 0 8px var(--color-acento);
+      cursor: pointer;
+    }
+
+    /* Adaptar el main para dejar espacio al menú lateral */
+    @media(min-width: 900px) {
+      main {
+        margin-left: 240px;
+      }
+      #btnCerrarMenu {
+        display: none;
+      }
+    }
+    @media(max-width: 899px) {
+      #opciones {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 220px;
+        height: calc(100vh - var(--header-height));
+        border-radius: 0;
+        padding: 20px 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+        transform: translateX(-250px);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      #opciones.abierto {
+        transform: translateX(0);
+      }
+      main {
+        margin-left: 0;
+      }
+      #btnCerrarMenu {
+        display: block;
+        align-self: flex-end;
+      }
+    }
+
+    /* Botón para abrir menú en móvil */
+    #btnAbrirMenu {
+      display: none;
+      position: fixed;
+      top: calc(var(--header-height) + 12px);
+      left: 12px;
+      background: var(--color-principal);
+      color: var(--color-fondo);
+      border: none;
+      padding: 8px 14px;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 2100;
+      user-select: none;
+      box-shadow:
+        0 0 10px var(--color-acento),
+        inset 0 0 8px var(--color-acento);
+      transition: background-color 0.3s ease;
+    }
+    #btnAbrirMenu:hover, #btnAbrirMenu:focus {
+      background: var(--color-acento);
+      outline: none;
+    }
+    @media(max-width: 899px) {
+      #btnAbrirMenu {
+        display: block;
+      }
+    }
+
+    /* Secciones */
     section {
       background: linear-gradient(145deg, #222222, #111111);
       border-radius: 20px;
@@ -160,15 +262,12 @@
       transform: translateY(20px);
       animation: fadeUp 0.7s forwards;
     }
-
     section:nth-child(odd) {
       animation-delay: 0.2s;
     }
-
     section:nth-child(even) {
       animation-delay: 0.4s;
     }
-
     section h2 {
       font-family: 'Orbitron', sans-serif;
       color: var(--color-principal);
@@ -180,7 +279,12 @@
       text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
       user-select: none;
     }
-
+    section h3 {
+      color: var(--color-acento);
+      margin-bottom: 12px;
+      font-family: 'Orbitron', sans-serif;
+      letter-spacing: 0.05em;
+    }
     section p {
       font-size: 1.2rem;
       line-height: 1.8;
@@ -188,7 +292,6 @@
       letter-spacing: 0.02em;
       color: #f0e6b7;
     }
-
     ul {
       list-style-type: none;
       font-size: 1.15rem;
@@ -196,7 +299,6 @@
       padding-left: 0;
       color: #f5f1dc;
     }
-
     ul li {
       padding: 12px 0;
       border-bottom: 1px solid #b38b0066;
@@ -205,16 +307,15 @@
       letter-spacing: 0.02em;
       user-select: none;
     }
-
     ul li:last-child {
       border-bottom: none;
     }
-
     ul li:hover {
       color: var(--color-acento);
       text-shadow: 0 0 6px rgba(212, 175, 55, 0.7);
     }
 
+    /* Botones principales */
     .boton-contacto {
       display: inline-block;
       width: 100%;
@@ -237,7 +338,6 @@
       transition: background-position 0.6s ease, box-shadow 0.4s ease;
       letter-spacing: 0.05em;
     }
-
     .boton-contacto:hover {
       background-position: 100% 0;
       box-shadow:
@@ -248,27 +348,58 @@
       text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
     }
 
-    footer {
-      background: rgba(30, 30, 30, 0.9);
-      padding: 20px 10px;
-      text-align: center;
-      font-size: 1rem;
-      color: var(--color-texto);
+    /* Imágenes en secciones */
+    .imagenes-seccion {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
+      gap: 15px;
+      margin-bottom: 25px;
+    }
+    .imagenes-seccion img {
+      width: 100%;
+      border-radius: 15px;
+      box-shadow:
+        0 0 10px var(--color-principal),
+        inset 0 0 10px var(--color-principal);
+      transition: transform 0.3s ease;
+      cursor: pointer;
       user-select: none;
-      box-shadow: inset 0 2px 5px rgba(179, 139, 0, 0.5);
-      border-radius: 15px 15px 0 0;
-      letter-spacing: 0.05em;
-      font-family: 'Orbitron', sans-serif;
-      margin-top: 40px;
+    }
+    .imagenes-seccion img:hover {
+      transform: scale(1.05);
+      box-shadow:
+        0 0 15px var(--color-acento),
+        inset 0 0 15px var(--color-acento);
     }
 
+    /* Mapa container */
+    .mapa-container {
+      margin: 40px auto;
+      max-width: var(--max-ancho);
+      height: 350px;
+      border-radius: 20px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(179, 139, 0, 0.5);
+      border: 3px solid var(--color-principal);
+    }
+    .mapa-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      filter: saturate(1.3) brightness(1.05) contrast(1.15);
+      transition: filter 0.3s ease;
+    }
+    .mapa-container iframe:hover {
+      filter: saturate(1.5) brightness(1.1) contrast(1.25);
+    }
+
+    /* Animaciones */
     @keyframes fadeUp {
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-
     @keyframes fadeInUp {
       0% {
         opacity: 0;
@@ -280,6 +411,7 @@
       }
     }
 
+    /* Estrellas animadas */
     .estrellas {
       display: flex;
       justify-content: center;
@@ -288,7 +420,6 @@
       filter: drop-shadow(0 0 4px var(--color-acento));
       user-select: none;
     }
-
     .estrella {
       color: var(--color-principal);
       font-size: 2.6rem;
@@ -299,14 +430,12 @@
       transform-origin: center;
       filter: drop-shadow(0 0 4px rgba(179, 139, 0, 0.5));
     }
-
     .estrella:nth-child(odd) {
       animation-delay: 0s;
     }
     .estrella:nth-child(even) {
       animation-delay: 1s;
     }
-
     @keyframes brillar {
       0% {
         filter: drop-shadow(0 0 4px rgba(179, 139, 0, 0.5));
@@ -325,6 +454,7 @@
       }
     }
 
+    /* Efecto 3D bienvenida */
     #bienvenida {
       perspective: 800px;
       position: relative;
@@ -335,27 +465,7 @@
       will-change: transform;
     }
 
-    .mapa-container {
-      margin: 40px auto;
-      max-width: 960px;
-      height: 350px;
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 0 15px rgba(179, 139, 0, 0.5);
-      border: 3px solid var(--color-principal);
-    }
-
-    .mapa-container iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      filter: saturate(1.3) brightness(1.05) contrast(1.15);
-      transition: filter 0.3s ease;
-    }
-    .mapa-container iframe:hover {
-      filter: saturate(1.5) brightness(1.1) contrast(1.25);
-    }
-
+    /* Botones extras container */
     .botones-extras {
       display: flex;
       flex-wrap: wrap;
@@ -364,33 +474,51 @@
       margin-top: 20px;
     }
 
-    .imagenes-seccion img {
-      width: 100%;
-      border-radius: 15px;
-      box-shadow:
-        0 0 10px var(--color-principal),
-        inset 0 0 10px var(--color-principal);
-      transition: transform 0.3s ease;
-      cursor: pointer;
+    /* Floating WhatsApp button */
+    #whatsappFloat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--color-principal);
+      color: #111;
+      padding: 16px;
+      border-radius: 50%;
+      font-size: 24px;
+      text-decoration: none;
+      box-shadow: 0 0 15px rgba(179, 139, 0, 0.5);
+      transition: box-shadow 0.3s ease;
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       user-select: none;
     }
-    .imagenes-seccion img:hover {
-      transform: scale(1.05);
+    #whatsappFloat:hover {
       box-shadow:
-        0 0 15px var(--color-acento),
-        inset 0 0 15px var(--color-acento);
+        0 0 25px rgba(179, 139, 0, 0.7);
+    }
+
+    /* Responsive images section grid for smaller devices */
+    @media (max-width: 500px) {
+      .imagenes-seccion {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
 <body>
   <header id="header">
     <h1 title="Gran Montana Hotel, Restaurante &amp; Steakhouse">GRAN MONTANA</h1>
-    <button id="toggleTheme" aria-label="Cambiar tema oscuro o claro" title="Alternar modo oscuro/claro">🌙</button>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button id="toggleTheme" aria-label="Cambiar tema oscuro o claro" title="Alternar modo oscuro/claro">🌙</button>
+      <button id="btnAbrirMenu" aria-label="Abrir menú lateral" title="Abrir menú lateral">☰</button>
+    </div>
   </header>
 
-  <aside id="opciones" aria-label="Menú de opciones">
+  <aside id="opciones" aria-label="Menú de opciones" role="navigation" tabindex="0">
     <h2>Opciones</h2>
-    <nav id="navMenu">
+    <button id="btnCerrarMenu" aria-label="Cerrar menú lateral" title="Cerrar menú lateral">×</button>
+    <nav id="navMenu" >
       <a href="#bienvenida">Bienvenida</a>
       <a href="#alojamiento">Alojamiento</a>
       <a href="#restaurante">Restaurante</a>
@@ -402,9 +530,9 @@
 
   <main>
     <section id="bienvenida" aria-label="Bienvenida">
-      <div class="contenido">
+      <div class="contenido" tabindex="0">
         <h2>Bienvenidos a Gran Montana</h2>
-        <div class="estrellas" aria-label="Calificación 5 estrellas">
+        <div class="estrellas" aria-label="Calificación 5 estrellas" role="img" aria-live="polite">
           <span class="estrella" aria-hidden="true">&#9733;</span>
           <span class="estrella" aria-hidden="true">&#9733;</span>
           <span class="estrella" aria-hidden="true">&#9733;</span>
@@ -420,7 +548,7 @@
       </div>
     </section>
 
-    <section id="alojamiento">
+    <section id="alojamiento" tabindex="0">
       <h2>Alojamiento</h2>
       <p>
         Disfruta de nuestras cómodas habitaciones, diseñadas para ofrecerte un descanso reparador y todas las comodidades que mereces. Ya sea que viajes solo, en pareja o en familia, contamos con espacios ideales para ti.
@@ -428,13 +556,17 @@
       <p>
         Cada habitación está equipada con mobiliario moderno, control de clima, y conexión Wi-Fi de alta velocidad para que tu experiencia sea perfecta tanto para relajarte como para trabajar.
       </p>
-      <div class="imagenes-seccion">
+
+      <h3>Galería de Habitaciones</h3>
+      <div class="imagenes-seccion" aria-label="Galería de habitaciones">
         <img src="https://i.imgur.com/V3riEI9.jpg" alt="Habitación cómoda y elegante" loading="lazy" />
         <img src="https://i.imgur.com/okTVXYN.jpg" alt="Habitación doble moderna" loading="lazy" />
-        <img src="https://i.imgur.com/tieKydi.jpg" alt="Pasillos y áreas comunes de habitaciones" loading="lazy" />
-        <img src="https://i.imgur.com/wbRH7lU.jpg" alt="Área exterior y jardín para descanso" loading="lazy" />
         <img src="https://i.imgur.com/SGOB5uZ.jpg" alt="Lobby del hotel" loading="lazy" />
+        <img src="https://i.imgur.com/ExG3ZAN.jpg" alt="Habitación" loading="lazy" />
+        <img src="https://i.imgur.com/FWTbnlw.jpg" alt="Habitación" loading="lazy" />
+        <img src="https://i.imgur.com/n2acC7h.jpg" alt="Baño habitación" loading="lazy" />
       </div>
+
       <ul>
         <li>Habitaciones individuales, dobles y suites familiares con decoración elegante.</li>
         <li>Baño privado con agua caliente y amenidades premium.</li>
@@ -444,7 +576,7 @@
       </ul>
     </section>
 
-    <section id="restaurante">
+    <section id="restaurante" tabindex="0">
       <h2>Restaurante</h2>
       <p>
         Deléitate con nuestra variedad gastronómica que combina sabores típicos de la región con platillos internacionales. Nuestro restaurante ofrece un ambiente acogedor y atención excepcional para que cada comida sea una experiencia memorable.
@@ -452,21 +584,22 @@
       <p>
         Contamos con chefs expertos que preparan diariamente menús frescos y deliciosos, atendiendo a todas las preferencias, incluyendo opciones vegetarianas y para personas con restricciones alimenticias.
       </p>
-      <div class="imagenes-seccion">
-        <img src="https://i.imgur.com/FWTbnlw.jpg" alt="Plato gourmet servido en restaurante" loading="lazy" />
-        <img src="https://i.imgur.com/n2acC7h.jpg" alt="Ambiente del restaurante" loading="lazy" />
-        <img src="https://i.imgur.com/jyXDiWF.jpg" alt="Interior restaurante o mesas" loading="lazy" />
+
+      <h3>Galería del Restaurante</h3>
+      <div class="imagenes-seccion" aria-label="Galería del restaurante">
         <img src="https://i.imgur.com/PpW72tX.jpg" alt="Área social del restaurante" loading="lazy" />
+        <img src="https://i.imgur.com/tieKydi.jpg" alt="Pasillos y áreas comunes del restaurante" loading="lazy" />
       </div>
+
       <ul>
-        <li>Desayunos buffet nutritivos y variados para empezar bien el día.</li>
-        <li>Menú a la carta con opciones vegetarianas y especiales gourmet.</li>
-        <li>Ingredientes frescos, locales y de la mejor calidad.</li>
+        <li>Desayunos nutritivos y variados para empezar bien el día.</li>
+        <li>Menú a la carta con opciones  especiales.</li>
+        <li>Ingredientes frescos, y de la mejor calidad.</li>
         <li>Ambiente familiar, cordial y música en vivo en ocasiones especiales.</li>
       </ul>
     </section>
 
-    <section id="eventos">
+    <section id="eventos" tabindex="0">
       <h2>Eventos y Celebraciones</h2>
       <p>
         Celebra tus momentos más importantes en un espacio versátil y equipado para eventos sociales y corporativos. Nuestro equipo te brindará asesoría completa para que tu celebración sea un éxito inolvidable.
@@ -474,11 +607,12 @@
       <p>
         Disponemos de salones adaptables con tecnología audiovisual y catering personalizado para tus reuniones empresariales, capacitaciones y lanzamientos de productos.
       </p>
-      <div class="imagenes-seccion">
-        <img src="https://i.imgur.com/ExG3ZAN.jpg" alt="Vista panorámica del hotel y áreas para eventos" loading="lazy" />
+
+      <h3>Galería de Eventos</h3>
+      <div class="imagenes-seccion" aria-label="Galería de eventos">
         <img src="https://i.imgur.com/bPTtyNL.jpg" alt="Área de descanso o salón para eventos" loading="lazy" />
-        <img src="https://i.imgur.com/O5ThIyX.jpg" alt="Entrada o área social para eventos" loading="lazy" />
       </div>
+
       <ul>
         <li>Reuniones empresariales, capacitaciones y lanzamientos de productos.</li>
         <li>Eventos culturales, artísticos y comunitarios con apoyo logístico.</li>
@@ -486,15 +620,19 @@
       </ul>
     </section>
 
-    <section id="piscina">
+    <section id="piscina" tabindex="0">
       <h2>Piscina y Áreas Recreativas</h2>
       <p>
         Relájate en nuestra refrescante piscina, segura para toda la familia. Además, contamos con zonas de descanso con sombra para que disfrutes del ambiente natural con comodidad.
       </p>
-      <div class="imagenes-seccion">
+
+      <h3>Galería Piscina y Recreación</h3>
+      <div class="imagenes-seccion" aria-label="Galería de piscina y áreas recreativas">
         <img src="https://i.imgur.com/nYvjxGR.jpg" alt="Piscina segura para toda la familia" loading="lazy" />
         <img src="https://i.imgur.com/bPTtyNL.jpg" alt="Área de descanso junto a la piscina" loading="lazy" />
+        <img src="https://i.imgur.com/wbRH7lU.jpg" alt="Área exterior y piscina" loading="lazy" />
       </div>
+
       <ul>
         <li>Piscina limpia, segura y apta para toda la familia.</li>
         <li>Zonas de descanso con sombra, mobiliario cómodo y vistas panorámicas.</li>
@@ -511,18 +649,24 @@
       ></iframe>
     </section>
 
-    <section id="contacto">
+    <section id="contacto" tabindex="0">
       <h2>Contacto</h2>
       <p style="text-align:center; font-size:1.15rem; margin-bottom:15px; color:#f0e6b7;">
         ¿Quieres reservar o tienes alguna consulta? ¡Contáctanos directamente por WhatsApp!
       </p>
-      <a href="https://wa.me/50240255881" target="_blank" rel="noopener" class="boton-contacto">
+      <a href="https://wa.me/50240255881" target="_blank" rel="noopener" class="boton-contacto" aria-label="Contactar por WhatsApp">
         Contactar por WhatsApp
       </a>
       <div class="botones-extras">
-        <a href="https://menumontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;">Menú del Restaurante</a>
-        <a href="https://numeroscuentapinomontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;">Números de Cuenta</a>
-        <a href="https://drive.google.com/file/d/1MpZDgN5MQ2XpqUitoMwwfBM6l3wc6Dgt/view" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;">Normativo del Hotel</a>
+        <a href="https://menumontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;" aria-label="Menú del Restaurante">
+          Menú del Restaurante
+        </a>
+        <a href="https://numeroscuentapinomontana.wordpress.com" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;" aria-label="Números de Cuenta">
+          Números de Cuenta
+        </a>
+        <a href="https://drive.google.com/file/d/1MpZDgN5MQ2XpqUitoMwwfBM6l3wc6Dgt/view" target="_blank" rel="noopener" class="boton-contacto" style="max-width: 280px;" aria-label="Normativo del Hotel">
+          Normativo del Hotel
+        </a>
       </div>
       <p class="contacto-info" style="margin-top: 30px; text-align:center; color:#f0e6b7;">
         Dirección: <strong>Poptún, Petén, Barrio Las Tres Cruces Zona 2</strong><br />
@@ -536,6 +680,7 @@
   </footer>
 
   <script>
+    // Efecto 3D en bienvenida
     const bienvenida = document.querySelector('#bienvenida .contenido');
     document.addEventListener('mousemove', e => {
       const x = (window.innerWidth / 2 - e.clientX) / 60;
@@ -545,8 +690,8 @@
       }
     });
 
+    // Header shrink on scroll
     const header = document.getElementById('header');
-    let lastScrollTop = 0;
     window.addEventListener('scroll', () => {
       const st = window.pageYOffset || document.documentElement.scrollTop;
       if(st > 50) {
@@ -554,12 +699,13 @@
       } else {
         header.classList.remove('shrink');
       }
-      lastScrollTop = st <= 0 ? 0 : st;
     });
 
+    // Toggle theme
     const toggleBtn = document.getElementById('toggleTheme');
     const body = document.body;
 
+    // Load saved theme
     if(localStorage.getItem('theme') === 'light') {
       body.classList.add('light-theme');
       toggleBtn.textContent = '☀️';
@@ -578,11 +724,31 @@
         toggleBtn.textContent = '☀️';
       }
     });
+
+    // Menú lateral toggle móvil
+    const btnAbrirMenu = document.getElementById('btnAbrirMenu');
+    const btnCerrarMenu = document.getElementById('btnCerrarMenu');
+    const menu = document.getElementById('opciones');
+
+    btnAbrirMenu.addEventListener('click', () => {
+      menu.classList.add('abierto');
+    });
+    btnCerrarMenu.addEventListener('click', () => {
+      menu.classList.remove('abierto');
+    });
+
+    // Cerrar menú al hacer click en enlace móvil
+    document.querySelectorAll('#opciones nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(window.innerWidth < 900) {
+          menu.classList.remove('abierto');
+        }
+      });
+    });
   </script>
 
-  <a href="https://wa.me/50240255881" target="_blank" aria-label="Contactar por WhatsApp" id="whatsappFloat" title="Contactar por WhatsApp" style="position: fixed; bottom: 20px; right: 20px; background: var(--color-principal); color: #111; padding: 16px; border-radius: 50%; font-size: 24px; text-decoration: none; box-shadow: 0 0 15px rgba(179, 139, 0, 0.5); transition: box-shadow 0.3s ease; z-index: 9999; display: flex; align-items: center; justify-content: center; user-select: none;">
+  <a href="https://wa.me/50240255881" target="_blank" aria-label="Contactar por WhatsApp" id="whatsappFloat" title="Contactar por WhatsApp">
     📱
   </a>
-
 </body>
 </html>
