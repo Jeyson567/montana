@@ -94,13 +94,16 @@
       font-size: 1.6rem;
     }
 
-    /* Menú normal, NO sticky */
+    /* Menú normal, no sticky, ancho aumentado */
     #opciones {
       background: rgba(30, 30, 30, 0.9);
-      padding: 15px 30px;
+      padding: 15px 40px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.6);
       user-select: none;
-      margin-top: var(--header-height); /* espacio debajo del header fijo */
+      margin-top: var(--header-height);
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
       z-index: 1000;
     }
 
@@ -133,8 +136,8 @@
     }
 
     main {
-      margin-top: 20px; /* ya no necesita espacio para menú sticky */
-      max-width: 960px;
+      margin-top: 20px;
+      max-width: 1100px;
       margin-left: auto;
       margin-right: auto;
       padding: 0 20px 40px;
