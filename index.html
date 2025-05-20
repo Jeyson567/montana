@@ -90,6 +90,7 @@
     header.shrink h1 {
       font-size: 1.6rem;
     }
+
     #toggleTheme {
       background: transparent;
       border: none;
@@ -98,6 +99,7 @@
       cursor: pointer;
       user-select: none;
       transition: color 0.3s ease;
+      margin-left: 12px;
       margin-right: 12px;
       z-index: 3100;
     }
@@ -105,18 +107,20 @@
       color: var(--color-acento);
       outline: none;
     }
-    #btnCerrarMenu {
+
+    /* Botón mostrar/ocultar menú lateral */
+    #btnToggleMenu {
       background: transparent;
       border: none;
       font-size: 2rem;
       color: var(--color-principal);
       cursor: pointer;
       user-select: none;
-      display: none;
       transition: color 0.3s ease;
       z-index: 3100;
+      margin-right: 12px;
     }
-    #btnCerrarMenu:hover, #btnCerrarMenu:focus {
+    #btnToggleMenu:hover, #btnToggleMenu:focus {
       color: var(--color-acento);
       outline: none;
     }
@@ -139,7 +143,13 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+      transition: transform 0.3s ease;
     }
+    /* Ocultar menú lateral */
+    #opciones.oculto {
+      transform: translateX(calc(-1 * var(--menu-width)));
+    }
+
     #opciones h2 {
       color: var(--color-principal);
       font-family: 'Orbitron', sans-serif;
@@ -189,7 +199,13 @@
       background: linear-gradient(135deg, var(--color-fondo) 0%, #1a1a1a 100%);
       user-select: text;
       scroll-snap-type: x mandatory;
+      transition: left 0.3s ease;
     }
+    /* Expandir main cuando menú oculto */
+    main.expanded {
+      left: 0;
+    }
+
     main > section {
       flex: 0 0 100vw;
       max-width: 100vw;
@@ -467,15 +483,12 @@
 <body>
   <header id="header">
     <h1 title="Gran Montana Hotel, Restaurante &amp; Steakhouse">GRAN MONTANA</h1>
-    <div style="display:flex; align-items:center; gap:12px;">
-      <button id="toggleTheme" aria-label="Cambiar tema oscuro o claro" title="Alternar modo oscuro/claro">🌙</button>
-      <button id="btnAbrirMenu" aria-label="Abrir menú lateral" title="Abrir menú lateral">☰</button>
-    </div>
+    <button id="btnToggleMenu" aria-label="Mostrar u ocultar menú lateral" title="Mostrar u ocultar menú lateral">☰</button>
+    <button id="toggleTheme" aria-label="Cambiar tema oscuro o claro" title="Alternar modo oscuro/claro">🌙</button>
   </header>
 
   <aside id="opciones" aria-label="Menú de opciones" role="navigation" tabindex="0">
     <h2>Opciones</h2>
-    <button id="btnCerrarMenu" aria-label="Cerrar menú lateral" title="Cerrar menú lateral">×</button>
     <nav id="navMenu" >
       <a href="#bienvenida">Bienvenida</a>
       <a href="#alojamiento">Alojamiento</a>
@@ -550,8 +563,8 @@
       </div>
 
       <ul>
-        <li>Desayunos buffet nutritivos y variados para empezar bien el día.</li>
-        <li>Menú a la carta con opciones vegetarianas y especiales gourmet.</li>
+        <li>Desayunos  nutritivos y variados para empezar bien el día.</li>
+        <li>Menú a la carta con opciones especiales.</li>
         <li>Ingredientes frescos, locales y de la mejor calidad.</li>
         <li>Ambiente familiar, cordial y música en vivo en ocasiones especiales.</li>
       </ul>
@@ -683,25 +696,20 @@
       }
     });
 
-    // Menú lateral toggle móvil
-    const btnAbrirMenu = document.getElementById('btnAbrirMenu');
-    const btnCerrarMenu = document.getElementById('btnCerrarMenu');
+    // Toggle menú lateral mostrar/ocultar
+    const btnToggleMenu = document.getElementById('btnToggleMenu');
     const menu = document.getElementById('opciones');
+    const main = document.querySelector('main');
 
-    btnAbrirMenu.addEventListener('click', () => {
-      menu.classList.add('abierto');
-    });
-    btnCerrarMenu.addEventListener('click', () => {
-      menu.classList.remove('abierto');
-    });
-
-    // Cerrar menú al hacer click en enlace móvil
-    document.querySelectorAll('#opciones nav a').forEach(link => {
-      link.addEventListener('click', () => {
-        if(window.innerWidth < 900) {
-          menu.classList.remove('abierto');
-        }
-      });
+    btnToggleMenu.addEventListener('click', () => {
+      const oculto = menu.classList.toggle('oculto');
+      if(oculto) {
+        main.classList.add('expanded');
+        btnToggleMenu.textContent = '✕';
+      } else {
+        main.classList.remove('expanded');
+        btnToggleMenu.textContent = '☰';
+      }
     });
   </script>
 
