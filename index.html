@@ -17,7 +17,7 @@
       --sombra-neon: 0 0 6px rgba(179, 139, 0, 0.6), 0 0 12px rgba(179, 139, 0, 0.4);
       --header-height: 80px;
       --header-min-height: 50px;
-      --menu-width: 220px;
+      --max-ancho: 1100px;
     }
 
     *, *::before, *::after {
@@ -33,10 +33,10 @@
       line-height: 1.6;
       min-height: 100vh;
       scroll-behavior: smooth;
+      padding: 0 20px 40px;
       overflow-x: hidden;
       user-select: none;
       transition: background-color 0.5s, color 0.5s;
-      padding-top: var(--header-height);
     }
     body.light-theme {
       --color-fondo: #fefefe;
@@ -48,6 +48,7 @@
       color: var(--color-texto);
     }
 
+    /* Header fijo y responsive */
     header {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -58,7 +59,7 @@
       display: flex;
       align-items: center;
       padding: 0 30px;
-      z-index: 3000;
+      z-index: 2000;
       transition:
         height 0.4s ease,
         background-color 0.4s ease,
@@ -90,7 +91,6 @@
     header.shrink h1 {
       font-size: 1.6rem;
     }
-
     #toggleTheme {
       background: transparent;
       border: none;
@@ -99,38 +99,44 @@
       cursor: pointer;
       user-select: none;
       transition: color 0.3s ease;
-      margin-left: 12px;
       margin-right: 12px;
-      z-index: 3100;
     }
     #toggleTheme:hover, #toggleTheme:focus {
       color: var(--color-acento);
       outline: none;
     }
-
-    /* Botón mostrar/ocultar menú lateral */
-    #btnToggleMenu {
+    #btnCerrarMenu {
       background: transparent;
       border: none;
       font-size: 2rem;
       color: var(--color-principal);
       cursor: pointer;
       user-select: none;
+      display: none;
       transition: color 0.3s ease;
-      z-index: 3100;
-      margin-right: 12px;
     }
-    #btnToggleMenu:hover, #btnToggleMenu:focus {
+    #btnCerrarMenu:hover, #btnCerrarMenu:focus {
       color: var(--color-acento);
       outline: none;
     }
 
-    /* Menú lateral fijo */
+    /* Contenedor general */
+    main {
+      max-width: var(--max-ancho);
+      margin: calc(var(--header-height) + 20px) auto 40px auto;
+      padding: 0 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 55px;
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    /* Menú lateral para desktop */
     #opciones {
       position: fixed;
       top: var(--header-height);
       left: 0;
-      width: var(--menu-width);
+      width: 220px;
       height: calc(100vh - var(--header-height));
       background: rgba(30, 30, 30, 0.9);
       box-shadow: 0 2px 8px rgba(0,0,0,0.6);
@@ -139,17 +145,11 @@
       user-select: none;
       border-top-right-radius: 20px;
       border-bottom-right-radius: 20px;
-      z-index: 2000;
+      z-index: 1500;
       display: flex;
       flex-direction: column;
       gap: 15px;
-      transition: transform 0.3s ease;
     }
-    /* Ocultar menú lateral */
-    #opciones.oculto {
-      transform: translateX(calc(-1 * var(--menu-width)));
-    }
-
     #opciones h2 {
       color: var(--color-principal);
       font-family: 'Orbitron', sans-serif;
@@ -182,37 +182,74 @@
       cursor: pointer;
     }
 
-    /* Contenedor principal: fila horizontal con scroll */
-    main {
-      position: absolute;
-      top: var(--header-height);
-      left: var(--menu-width);
-      right: 0;
-      bottom: 0;
-      overflow-x: auto;
-      overflow-y: hidden;
-      display: flex;
-      gap: 50px;
-      padding: 20px;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      background: linear-gradient(135deg, var(--color-fondo) 0%, #1a1a1a 100%);
-      user-select: text;
-      scroll-snap-type: x mandatory;
-      transition: left 0.3s ease;
+    /* Adaptar el main para dejar espacio al menú lateral */
+    @media(min-width: 900px) {
+      main {
+        margin-left: 240px;
+      }
+      #btnCerrarMenu {
+        display: none;
+      }
     }
-    /* Expandir main cuando menú oculto */
-    main.expanded {
-      left: 0;
+    @media(max-width: 899px) {
+      #opciones {
+        position: fixed;
+        top: var(--header-height);
+        left: 0;
+        width: 220px;
+        height: calc(100vh - var(--header-height));
+        border-radius: 0;
+        padding: 20px 10px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+        transform: translateX(-250px);
+        transition: transform 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+      #opciones.abierto {
+        transform: translateX(0);
+      }
+      main {
+        margin-left: 0;
+      }
+      #btnCerrarMenu {
+        display: block;
+        align-self: flex-end;
+      }
     }
 
-    main > section {
-      flex: 0 0 100vw;
-      max-width: 100vw;
-      height: calc(100vh - var(--header-height) - 40px);
-      overflow-y: auto;
-      scroll-snap-align: start;
+    /* Botón para abrir menú en móvil */
+    #btnAbrirMenu {
+      display: none;
+      position: fixed;
+      top: calc(var(--header-height) + 12px);
+      left: 12px;
+      background: var(--color-principal);
+      color: var(--color-fondo);
+      border: none;
+      padding: 8px 14px;
+      font-size: 1.5rem;
+      border-radius: 10px;
+      cursor: pointer;
+      z-index: 2100;
+      user-select: none;
+      box-shadow:
+        0 0 10px var(--color-acento),
+        inset 0 0 8px var(--color-acento);
+      transition: background-color 0.3s ease;
+    }
+    #btnAbrirMenu:hover, #btnAbrirMenu:focus {
+      background: var(--color-acento);
+      outline: none;
+    }
+    @media(max-width: 899px) {
+      #btnAbrirMenu {
+        display: block;
+      }
+    }
 
+    /* Secciones */
+    section {
       background: linear-gradient(145deg, #222222, #111111);
       border-radius: 20px;
       padding: 40px 35px;
@@ -220,25 +257,17 @@
         0 0 12px var(--color-principal),
         inset 0 0 15px var(--color-principal);
       color: var(--color-texto);
-      opacity: 1;
-      transform: none;
-      display: flex;
-      flex-direction: column;
+      user-select: text;
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeUp 0.7s forwards;
     }
-
-    /* Scrollbar para main horizontal (solo webkit browsers) */
-    main::-webkit-scrollbar {
-      height: 10px;
+    section:nth-child(odd) {
+      animation-delay: 0.2s;
     }
-    main::-webkit-scrollbar-track {
-      background: #222;
-      border-radius: 10px;
+    section:nth-child(even) {
+      animation-delay: 0.4s;
     }
-    main::-webkit-scrollbar-thumb {
-      background: var(--color-principal);
-      border-radius: 10px;
-    }
-
     section h2 {
       font-family: 'Orbitron', sans-serif;
       color: var(--color-principal);
@@ -286,6 +315,7 @@
       text-shadow: 0 0 6px rgba(212, 175, 55, 0.7);
     }
 
+    /* Botones principales */
     .boton-contacto {
       display: inline-block;
       width: 100%;
@@ -318,6 +348,7 @@
       text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
     }
 
+    /* Imágenes en secciones */
     .imagenes-seccion {
       display: grid;
       grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
@@ -341,19 +372,15 @@
         inset 0 0 15px var(--color-acento);
     }
 
+    /* Mapa container */
     .mapa-container {
-      margin: 40px auto 20px auto;
-      width: 100%;
+      margin: 40px auto;
+      max-width: var(--max-ancho);
       height: 350px;
       border-radius: 20px;
       overflow: hidden;
       box-shadow: 0 0 15px rgba(179, 139, 0, 0.5);
       border: 3px solid var(--color-principal);
-      flex: 0 0 100vw;
-      scroll-snap-align: start;
-      background: linear-gradient(145deg, #222222, #111111);
-      padding: 40px 35px;
-      box-sizing: border-box;
     }
     .mapa-container iframe {
       width: 100%;
@@ -364,6 +391,24 @@
     }
     .mapa-container iframe:hover {
       filter: saturate(1.5) brightness(1.1) contrast(1.25);
+    }
+
+    /* Animaciones */
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    @keyframes fadeInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* Estrellas animadas */
@@ -454,26 +499,7 @@
     }
 
     /* Responsive images section grid for smaller devices */
-    @media (max-width: 600px) {
-      main {
-        position: static;
-        overflow-x: visible;
-        overflow-y: visible;
-        flex-direction: column;
-        height: auto;
-        padding: 20px 12px;
-      }
-      main > section, .mapa-container {
-        flex: none;
-        max-width: 100%;
-        height: auto;
-        scroll-snap-align: none;
-        margin-bottom: 40px;
-      }
-      section {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
+    @media (max-width: 500px) {
       .imagenes-seccion {
         grid-template-columns: 1fr;
       }
@@ -483,12 +509,15 @@
 <body>
   <header id="header">
     <h1 title="Gran Montana Hotel, Restaurante &amp; Steakhouse">GRAN MONTANA</h1>
-    <button id="btnToggleMenu" aria-label="Mostrar u ocultar menú lateral" title="Mostrar u ocultar menú lateral">☰</button>
-    <button id="toggleTheme" aria-label="Cambiar tema oscuro o claro" title="Alternar modo oscuro/claro">🌙</button>
+    <div style="display:flex; align-items:center; gap:12px;">
+      <button id="toggleTheme" aria-label="Cambiar tema oscuro o claro" title="Alternar modo oscuro/claro">🌙</button>
+      <button id="btnAbrirMenu" aria-label="Abrir menú lateral" title="Abrir menú lateral">☰</button>
+    </div>
   </header>
 
   <aside id="opciones" aria-label="Menú de opciones" role="navigation" tabindex="0">
     <h2>Opciones</h2>
+    <button id="btnCerrarMenu" aria-label="Cerrar menú lateral" title="Cerrar menú lateral">×</button>
     <nav id="navMenu" >
       <a href="#bienvenida">Bienvenida</a>
       <a href="#alojamiento">Alojamiento</a>
@@ -563,9 +592,9 @@
       </div>
 
       <ul>
-        <li>Desayunos  nutritivos y variados para empezar bien el día.</li>
-        <li>Menú a la carta con opciones especiales.</li>
-        <li>Ingredientes frescos, locales y de la mejor calidad.</li>
+        <li>Desayunos nutritivos y variados para empezar bien el día.</li>
+        <li>Menú a la carta con opciones  especiales.</li>
+        <li>Ingredientes frescos, y de la mejor calidad.</li>
         <li>Ambiente familiar, cordial y música en vivo en ocasiones especiales.</li>
       </ul>
     </section>
@@ -696,20 +725,25 @@
       }
     });
 
-    // Toggle menú lateral mostrar/ocultar
-    const btnToggleMenu = document.getElementById('btnToggleMenu');
+    // Menú lateral toggle móvil
+    const btnAbrirMenu = document.getElementById('btnAbrirMenu');
+    const btnCerrarMenu = document.getElementById('btnCerrarMenu');
     const menu = document.getElementById('opciones');
-    const main = document.querySelector('main');
 
-    btnToggleMenu.addEventListener('click', () => {
-      const oculto = menu.classList.toggle('oculto');
-      if(oculto) {
-        main.classList.add('expanded');
-        btnToggleMenu.textContent = '✕';
-      } else {
-        main.classList.remove('expanded');
-        btnToggleMenu.textContent = '☰';
-      }
+    btnAbrirMenu.addEventListener('click', () => {
+      menu.classList.add('abierto');
+    });
+    btnCerrarMenu.addEventListener('click', () => {
+      menu.classList.remove('abierto');
+    });
+
+    // Cerrar menú al hacer click en enlace móvil
+    document.querySelectorAll('#opciones nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        if(window.innerWidth < 900) {
+          menu.classList.remove('abierto');
+        }
+      });
     });
   </script>
 
