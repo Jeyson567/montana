@@ -352,16 +352,21 @@
     /* Imágenes en secciones */
     .imagenes-seccion {
       display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(180px,1fr));
-      gap: 15px;
+      grid-template-columns: repeat(auto-fit,minmax(140px,1fr));
+      gap: 10px;
       margin-bottom: 25px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .imagenes-seccion img {
       width: 100%;
-      border-radius: 15px;
+      max-height: 120px;
+      object-fit: cover;
+      border-radius: 12px;
       box-shadow:
-        0 0 10px var(--color-principal),
-        inset 0 0 10px var(--color-principal);
+        0 0 8px var(--color-principal),
+        inset 0 0 8px var(--color-principal);
       transition: transform 0.3s ease;
       cursor: pointer;
       user-select: none;
@@ -369,8 +374,8 @@
     .imagenes-seccion img:hover {
       transform: scale(1.05);
       box-shadow:
-        0 0 15px var(--color-acento),
-        inset 0 0 15px var(--color-acento);
+        0 0 12px var(--color-acento),
+        inset 0 0 12px var(--color-acento);
     }
 
     /* Mapa container */
@@ -464,46 +469,6 @@
     #bienvenida .contenido {
       transition: transform 0.15s ease-out;
       will-change: transform;
-    }
-
-    /* Botones extras container */
-    .botones-extras {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      justify-content: center;
-      margin-top: 20px;
-    }
-
-    /* Floating WhatsApp button */
-    #whatsappFloat {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--color-principal);
-      color: #111;
-      padding: 16px;
-      border-radius: 50%;
-      font-size: 24px;
-      text-decoration: none;
-      box-shadow: 0 0 15px rgba(179, 139, 0, 0.5);
-      transition: box-shadow 0.3s ease;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      user-select: none;
-    }
-    #whatsappFloat:hover {
-      box-shadow:
-        0 0 25px rgba(179, 139, 0, 0.7);
-    }
-
-    /* Responsive images section grid for smaller devices */
-    @media (max-width: 500px) {
-      .imagenes-seccion {
-        grid-template-columns: 1fr;
-      }
     }
 
     /* NUEVO ESTILO RESERVACION */
@@ -672,41 +637,16 @@
           Nuestro compromiso es brindarte una estancia inolvidable, combinando lujo, atención personalizada y un ambiente cálido y elegante. Explora nuestras instalaciones, disfruta de la gastronomía local e internacional y crea recuerdos imborrables en un entorno natural único.
         </p>
 
-        <button id="btnReservacion" aria-label="Ir a la sección de reservación">Reservar ahora</button>
+        <button id="btnReservacion" aria-label="Ir a la sección de reservación" class="boton-reservacion">Reservar ahora</button>
+
+        <div class="imagenes-seccion" aria-label="Galería de bienvenida">
+          <img src="https://i.imgur.com/V3riEI9.jpg" alt="Habitación cómoda y elegante" loading="lazy" />
+          <img src="https://i.imgur.com/PpW72tX.jpg" alt="Área social del restaurante" loading="lazy" />
+          <img src="https://i.imgur.com/bPTtyNL.jpg" alt="Área de descanso o salón para eventos" loading="lazy" />
+          <img src="https://i.imgur.com/nYvjxGR.jpg" alt="Piscina segura para toda la familia" loading="lazy" />
+        </div>
       </div>
     </section>
-
-    <!-- Las demás secciones siguen igual, no las pongo para ahorrar espacio -->
-
-    <section id="alojamiento" tabindex="0">
-      <h2>Alojamiento</h2>
-      <p>
-        Disfruta de nuestras cómodas habitaciones, diseñadas para ofrecerte un descanso reparador y todas las comodidades que mereces. Ya sea que viajes solo, en pareja o en familia, contamos con espacios ideales para ti.
-      </p>
-      <p>
-        Cada habitación está equipada con mobiliario moderno, control de clima, y conexión Wi-Fi de alta velocidad para que tu experiencia sea perfecta tanto para relajarte como para trabajar.
-      </p>
-
-      <h3>Galería de Habitaciones</h3>
-      <div class="imagenes-seccion" aria-label="Galería de habitaciones">
-        <img src="https://i.imgur.com/V3riEI9.jpg" alt="Habitación cómoda y elegante" loading="lazy" />
-        <img src="https://i.imgur.com/okTVXYN.jpg" alt="Habitación doble moderna" loading="lazy" />
-        <img src="https://i.imgur.com/SGOB5uZ.jpg" alt="Lobby del hotel" loading="lazy" />
-        <img src="https://i.imgur.com/ExG3ZAN.jpg" alt="Habitación" loading="lazy" />
-        <img src="https://i.imgur.com/FWTbnlw.jpg" alt="Habitación" loading="lazy" />
-        <img src="https://i.imgur.com/n2acC7h.jpg" alt="Baño habitación" loading="lazy" />
-      </div>
-
-      <ul>
-        <li>Habitaciones individuales, dobles y suites familiares con decoración elegante.</li>
-        <li>Baño privado con agua caliente y amenidades premium.</li>
-        <li>Wi-Fi gratuito y estable en todas las áreas del hotel.</li>
-        <li>Áreas verdes y zonas de descanso para relajarte y desconectar.</li>
-        <li>Servicio de lavandería y atención personalizada las 24 horas.</li>
-      </ul>
-    </section>
-
-    <!-- Continúan las otras secciones ... -->
 
     <section id="seccionReservacion" tabindex="0" aria-label="Formulario de reservación">
       <h2>Reservación</h2>
@@ -741,69 +681,63 @@
       </form>
     </section>
 
+    <section id="alojamiento" tabindex="0">
+      <h2>Alojamiento</h2>
+      <p>
+        Habitaciones cómodas para viajeros solos, parejas y familias.<br />
+        Equipadas con mobiliario moderno, control de clima y Wi-Fi estable.<br />
+        Servicios: agua caliente, amenidades premium y atención 24 horas.
+      </p>
+
+      <div class="imagenes-seccion" aria-label="Galería de habitaciones">
+        <img src="https://i.imgur.com/V3riEI9.jpg" alt="Habitación cómoda y elegante" loading="lazy" />
+        <img src="https://i.imgur.com/okTVXYN.jpg" alt="Habitación doble moderna" loading="lazy" />
+        <img src="https://i.imgur.com/SGOB5uZ.jpg" alt="Lobby del hotel" loading="lazy" />
+        <img src="https://i.imgur.com/ExG3ZAN.jpg" alt="Habitación" loading="lazy" />
+        <img src="https://i.imgur.com/FWTbnlw.jpg" alt="Habitación" loading="lazy" />
+        <img src="https://i.imgur.com/n2acC7h.jpg" alt="Baño habitación" loading="lazy" />
+      </div>
+    </section>
+
     <section id="restaurante" tabindex="0">
       <h2>Restaurante</h2>
       <p>
-        Deléitate con nuestra variedad gastronómica que combina sabores típicos de la región con platillos internacionales. Nuestro restaurante ofrece un ambiente acogedor y atención excepcional para que cada comida sea una experiencia memorable.
-      </p>
-      <p>
-        Contamos con chefs expertos que preparan diariamente menús frescos y deliciosos, atendiendo a todas las preferencias, incluyendo opciones vegetarianas y para personas con restricciones alimenticias.
+        Variedad gastronómica con sabores locales e internacionales.<br />
+        Menús frescos diarios con opciones vegetarianas y especiales.<br />
+        Ambiente acogedor y música en vivo en ocasiones especiales.
       </p>
 
-      <h3>Galería del Restaurante</h3>
       <div class="imagenes-seccion" aria-label="Galería del restaurante">
         <img src="https://i.imgur.com/PpW72tX.jpg" alt="Área social del restaurante" loading="lazy" />
         <img src="https://i.imgur.com/tieKydi.jpg" alt="Pasillos y áreas comunes del restaurante" loading="lazy" />
       </div>
-
-      <ul>
-        <li>Desayunos nutritivos y variados para empezar bien el día.</li>
-        <li>Menú a la carta con opciones  especiales.</li>
-        <li>Ingredientes frescos, y de la mejor calidad.</li>
-        <li>Ambiente familiar, cordial y música en vivo en ocasiones especiales.</li>
-      </ul>
     </section>
-
-    <!-- ... otras secciones ... -->
 
     <section id="eventos" tabindex="0">
       <h2>Eventos y Celebraciones</h2>
       <p>
-        Celebra tus momentos más importantes en un espacio versátil y equipado para eventos sociales y corporativos. Nuestro equipo te brindará asesoría completa para que tu celebración sea un éxito inolvidable.
-      </p>
-      <p>
-        Disponemos de salones adaptables con tecnología audiovisual y catering personalizado para tus reuniones empresariales, capacitaciones y lanzamientos de productos.
+        Espacios versátiles para eventos sociales y corporativos.<br />
+        Tecnología audiovisual y catering personalizado.<br />
+        Ideal para reuniones, capacitaciones y celebraciones.
       </p>
 
-      <h3>Galería de Eventos</h3>
       <div class="imagenes-seccion" aria-label="Galería de eventos">
         <img src="https://i.imgur.com/bPTtyNL.jpg" alt="Área de descanso o salón para eventos" loading="lazy" />
       </div>
-
-      <ul>
-        <li>Reuniones empresariales, capacitaciones y lanzamientos de productos.</li>
-        <li>Eventos culturales, artísticos y comunitarios con apoyo logístico.</li>
-        <li>Servicio de catering personalizado y decoración temática.</li>
-      </ul>
     </section>
 
     <section id="piscina" tabindex="0">
       <h2>Piscina y Áreas Recreativas</h2>
       <p>
-        Relájate en nuestra refrescante piscina, segura para toda la familia. Además, contamos con zonas de descanso con sombra para que disfrutes del ambiente natural con comodidad.
+        Piscina segura y limpia para toda la familia.<br />
+        Zonas de descanso con sombra y vistas panorámicas.
       </p>
 
-      <h3>Galería Piscina y Recreación</h3>
       <div class="imagenes-seccion" aria-label="Galería de piscina y áreas recreativas">
         <img src="https://i.imgur.com/nYvjxGR.jpg" alt="Piscina segura para toda la familia" loading="lazy" />
         <img src="https://i.imgur.com/bPTtyNL.jpg" alt="Área de descanso junto a la piscina" loading="lazy" />
         <img src="https://i.imgur.com/wbRH7lU.jpg" alt="Área exterior y piscina" loading="lazy" />
       </div>
-
-      <ul>
-        <li>Piscina limpia, segura y apta para toda la familia.</li>
-        <li>Zonas de descanso con sombra, mobiliario cómodo y vistas panorámicas.</li>
-      </ul>
     </section>
 
     <section id="contacto" tabindex="0">
