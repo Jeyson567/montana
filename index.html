@@ -656,9 +656,7 @@
           <option value="" disabled selected>-- Selecciona una opción --</option>
           <option value="Individual">Habitación Individual - Q200 por noche</option>
           <option value="Doble">Habitación Doble - Q400 por noche</option>
-          <option value="DobleSinAire">Habitación Doble sin aire - Q360 por noche</option>
-          <option value="Triple">Habitación Triple - Q600 por noche</option>
-          <option value="TripleSinAire">Habitación Triple sin aire - Q560 por noche</option>
+          <option value="Triple">Habitación Triple - Q500 por noche</option>
           <option value="Especial">Solicitar habitación especial (más personas)</option>
         </select>
 
@@ -670,9 +668,6 @@
 
         <label for="telefonoCliente">Teléfono (WhatsApp)</label>
         <input type="tel" id="telefonoCliente" name="telefonoCliente" placeholder="+502 1234 5678" required pattern="^\+?\d{7,15}$" />
-
-        <label for="emailCliente">Correo electrónico</label>
-        <input type="email" id="emailCliente" name="emailCliente" placeholder="ejemplo@correo.com" required />
 
         <label for="comentarios">Comentarios adicionales</label>
         <textarea id="comentarios" name="comentarios" placeholder="Escribe aquí si necesitas algo especial..." rows="3"></textarea>
@@ -850,7 +845,6 @@
       const noches = parseInt(document.getElementById('noches').value, 10);
       const nombre = document.getElementById('nombreCliente').value.trim();
       const telefono = document.getElementById('telefonoCliente').value.trim();
-      const email = document.getElementById('emailCliente').value.trim();
       const comentarios = document.getElementById('comentarios').value.trim();
 
       if(!tipo) {
@@ -869,18 +863,12 @@
         alert('Por favor, ingresa tu teléfono de contacto.');
         return;
       }
-      if(!email || !validateEmail(email)) {
-        alert('Por favor, ingresa un correo electrónico válido.');
-        return;
-      }
 
       // Precios según tipo de habitación
       const precios = {
         'Individual': 200,
         'Doble': 400,
-        'DobleSinAire': 360,
-        'Triple': 600,
-        'TripleSinAire': 560,
+        'Triple': 500,
         'Especial': 0
       };
 
@@ -899,7 +887,6 @@
       }
       mensaje += `- Nombre: ${nombre}%0A`;
       mensaje += `- Teléfono: ${telefono}%0A`;
-      mensaje += `- Email: ${email}%0A`;
       if(comentarios) {
         mensaje += `- Comentarios: ${comentarios}%0A`;
       }
@@ -911,18 +898,11 @@
       window.open(url, '_blank');
     });
 
-    function validateEmail(email) {
-      // Simple regex para validar email
-      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    }
-
     function getNombreTipo(codigo) {
       const nombres = {
         'Individual': 'Habitación Individual',
         'Doble': 'Habitación Doble',
-        'DobleSinAire': 'Habitación Doble sin aire acondicionado',
         'Triple': 'Habitación Triple',
-        'TripleSinAire': 'Habitación Triple sin aire acondicionado',
         'Especial': 'Habitación especial (más personas)'
       };
       return nombres[codigo] || codigo;
