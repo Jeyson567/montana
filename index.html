@@ -316,7 +316,7 @@
     }
 
     /* Botones principales */
-    .boton-contacto {
+    .boton-contacto, .boton-reservacion {
       display: inline-block;
       width: 100%;
       max-width: 320px;
@@ -337,8 +337,9 @@
         0 0 15px rgba(179, 139, 0, 0.4);
       transition: background-position 0.6s ease, box-shadow 0.4s ease;
       letter-spacing: 0.05em;
+      cursor: pointer;
     }
-    .boton-contacto:hover {
+    .boton-contacto:hover, .boton-reservacion:hover {
       background-position: 100% 0;
       box-shadow:
         0 0 10px rgba(179, 139, 0, 0.7),
@@ -504,6 +505,130 @@
         grid-template-columns: 1fr;
       }
     }
+
+    /* NUEVO ESTILO RESERVACION */
+
+    #btnReservacion {
+      display: inline-block;
+      width: 100%;
+      max-width: 320px;
+      margin: 15px auto 0;
+      padding: 16px 0;
+      background: linear-gradient(90deg, var(--color-principal) 0%, var(--color-acento) 50%, var(--color-principal) 100%);
+      background-size: 200% 100%;
+      color: #111;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 700;
+      border-radius: 30px;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      box-shadow:
+        0 0 5px rgba(179, 139, 0, 0.6),
+        0 0 15px rgba(179, 139, 0, 0.4);
+      transition: background-position 0.6s ease, box-shadow 0.4s ease;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+    }
+    #btnReservacion:hover {
+      background-position: 100% 0;
+      box-shadow:
+        0 0 10px rgba(179, 139, 0, 0.7),
+        0 0 20px rgba(179, 139, 0, 0.5),
+        0 0 25px rgba(179, 139, 0, 0.5);
+      color: var(--color-fondo);
+      text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
+    }
+
+    #seccionReservacion {
+      background: linear-gradient(145deg, #222222, #111111);
+      border-radius: 20px;
+      padding: 40px 35px;
+      box-shadow:
+        0 0 12px var(--color-principal),
+        inset 0 0 15px var(--color-principal);
+      color: var(--color-texto);
+      user-select: text;
+    }
+    #seccionReservacion h2 {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--color-principal);
+      font-size: 2.6rem;
+      margin-bottom: 20px;
+      letter-spacing: 1.5px;
+      border-bottom: 3px solid var(--color-principal);
+      padding-bottom: 10px;
+      text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
+      user-select: none;
+    }
+    #formReservacion {
+      max-width: 450px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    #formReservacion label {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--color-acento);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      font-size: 1rem;
+      user-select: none;
+    }
+    #formReservacion select,
+    #formReservacion input,
+    #formReservacion textarea {
+      padding: 10px 14px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 2px solid var(--color-principal);
+      background: var(--color-secundario);
+      color: var(--color-texto);
+      font-family: 'Open Sans', sans-serif;
+      user-select: text;
+      transition: border-color 0.3s ease;
+    }
+    #formReservacion select:focus,
+    #formReservacion input:focus,
+    #formReservacion textarea:focus {
+      border-color: var(--color-acento);
+      outline: none;
+    }
+    #formReservacion textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    #btnConfirmar {
+      margin-top: 15px;
+      padding: 16px 0;
+      font-family: 'Orbitron', sans-serif;
+      font-weight: 700;
+      font-size: 1.25rem;
+      background: linear-gradient(90deg, var(--color-principal) 0%, var(--color-acento) 50%, var(--color-principal) 100%);
+      background-size: 200% 100%;
+      border-radius: 30px;
+      border: none;
+      color: #111;
+      cursor: pointer;
+      box-shadow:
+        0 0 5px rgba(179, 139, 0, 0.6),
+        0 0 15px rgba(179, 139, 0, 0.4);
+      transition: background-position 0.6s ease, box-shadow 0.4s ease;
+      letter-spacing: 0.05em;
+      user-select: none;
+    }
+    #btnConfirmar:hover {
+      background-position: 100% 0;
+      box-shadow:
+        0 0 10px rgba(179, 139, 0, 0.7),
+        0 0 20px rgba(179, 139, 0, 0.5),
+        0 0 25px rgba(179, 139, 0, 0.5);
+      color: var(--color-fondo);
+      text-shadow: 0 0 4px rgba(179, 139, 0, 0.5);
+    }
+
   </style>
 </head>
 <body>
@@ -520,6 +645,7 @@
     <button id="btnCerrarMenu" aria-label="Cerrar menú lateral" title="Cerrar menú lateral">×</button>
     <nav id="navMenu" >
       <a href="#bienvenida">Bienvenida</a>
+      <a href="#reservacion">Reservación</a>
       <a href="#alojamiento">Alojamiento</a>
       <a href="#restaurante">Restaurante</a>
       <a href="#eventos">Eventos</a>
@@ -545,8 +671,12 @@
         <p>
           Nuestro compromiso es brindarte una estancia inolvidable, combinando lujo, atención personalizada y un ambiente cálido y elegante. Explora nuestras instalaciones, disfruta de la gastronomía local e internacional y crea recuerdos imborrables en un entorno natural único.
         </p>
+
+        <button id="btnReservacion" aria-label="Ir a la sección de reservación">Reservar ahora</button>
       </div>
     </section>
+
+    <!-- Las demás secciones siguen igual, no las pongo para ahorrar espacio -->
 
     <section id="alojamiento" tabindex="0">
       <h2>Alojamiento</h2>
@@ -576,6 +706,41 @@
       </ul>
     </section>
 
+    <!-- Continúan las otras secciones ... -->
+
+    <section id="seccionReservacion" tabindex="0" aria-label="Formulario de reservación">
+      <h2>Reservación</h2>
+      <form id="formReservacion" novalidate>
+        <label for="tipoHabitacion">Tipo de habitación</label>
+        <select id="tipoHabitacion" name="tipoHabitacion" required>
+          <option value="" disabled selected>-- Selecciona una opción --</option>
+          <option value="Individual">Habitación Individual - Q200 por noche</option>
+          <option value="Doble">Habitación Doble - Q400 por noche</option>
+          <option value="DobleSinAire">Habitación Doble sin aire - Q360 por noche</option>
+          <option value="Triple">Habitación Triple - Q600 por noche</option>
+          <option value="TripleSinAire">Habitación Triple sin aire - Q560 por noche</option>
+          <option value="Especial">Solicitar habitación especial (más personas)</option>
+        </select>
+
+        <label for="noches">Cantidad de noches</label>
+        <input type="number" id="noches" name="noches" min="1" value="1" required />
+
+        <label for="nombreCliente">Nombre completo</label>
+        <input type="text" id="nombreCliente" name="nombreCliente" placeholder="Tu nombre" required />
+
+        <label for="telefonoCliente">Teléfono (WhatsApp)</label>
+        <input type="tel" id="telefonoCliente" name="telefonoCliente" placeholder="+502 1234 5678" required pattern="^\+?\d{7,15}$" />
+
+        <label for="emailCliente">Correo electrónico</label>
+        <input type="email" id="emailCliente" name="emailCliente" placeholder="ejemplo@correo.com" required />
+
+        <label for="comentarios">Comentarios adicionales</label>
+        <textarea id="comentarios" name="comentarios" placeholder="Escribe aquí si necesitas algo especial..." rows="3"></textarea>
+
+        <button type="submit" id="btnConfirmar" aria-label="Confirmar reservación">Confirmar reservación</button>
+      </form>
+    </section>
+
     <section id="restaurante" tabindex="0">
       <h2>Restaurante</h2>
       <p>
@@ -598,6 +763,8 @@
         <li>Ambiente familiar, cordial y música en vivo en ocasiones especiales.</li>
       </ul>
     </section>
+
+    <!-- ... otras secciones ... -->
 
     <section id="eventos" tabindex="0">
       <h2>Eventos y Celebraciones</h2>
@@ -637,16 +804,6 @@
         <li>Piscina limpia, segura y apta para toda la familia.</li>
         <li>Zonas de descanso con sombra, mobiliario cómodo y vistas panorámicas.</li>
       </ul>
-    </section>
-
-    <section class="mapa-container" aria-label="Ubicación del Gran Montana Hotel, Restaurante &amp; Steakhouse en Google Maps">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15668.351434433775!2d-89.4146157!3d16.3288531!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f606315f49ece35%3A0xb4503b98d571b3fb!2sGran%20Montana%20Poptun!5e0!3m2!1ses-419!2sgt!4v1684402921321!5m2!1ses-419!2sgt"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade"
-        title="Mapa Gran Montana Hotel, Restaurante &amp; Steakhouse"
-      ></iframe>
     </section>
 
     <section id="contacto" tabindex="0">
@@ -745,6 +902,97 @@
         }
       });
     });
+
+    // Scroll suave al botón Reservar ahora
+    document.getElementById('btnReservacion').addEventListener('click', () => {
+      document.getElementById('seccionReservacion').scrollIntoView({behavior: 'smooth'});
+    });
+
+    // Manejo del formulario y envío por WhatsApp
+    document.getElementById('formReservacion').addEventListener('submit', e => {
+      e.preventDefault();
+
+      const tipo = document.getElementById('tipoHabitacion').value;
+      const noches = parseInt(document.getElementById('noches').value, 10);
+      const nombre = document.getElementById('nombreCliente').value.trim();
+      const telefono = document.getElementById('telefonoCliente').value.trim();
+      const email = document.getElementById('emailCliente').value.trim();
+      const comentarios = document.getElementById('comentarios').value.trim();
+
+      if(!tipo) {
+        alert('Por favor, selecciona un tipo de habitación.');
+        return;
+      }
+      if(noches < 1 || isNaN(noches)) {
+        alert('Por favor, ingresa una cantidad válida de noches.');
+        return;
+      }
+      if(!nombre) {
+        alert('Por favor, ingresa tu nombre.');
+        return;
+      }
+      if(!telefono) {
+        alert('Por favor, ingresa tu teléfono de contacto.');
+        return;
+      }
+      if(!email || !validateEmail(email)) {
+        alert('Por favor, ingresa un correo electrónico válido.');
+        return;
+      }
+
+      // Precios según tipo de habitación
+      const precios = {
+        'Individual': 200,
+        'Doble': 400,
+        'DobleSinAire': 360,
+        'Triple': 600,
+        'TripleSinAire': 560,
+        'Especial': 0
+      };
+
+      let precioNoche = precios[tipo];
+      let total = precioNoche * noches;
+
+      // Armar mensaje
+      let mensaje = `Hola, quisiera reservar en Gran Montana:%0A`;
+      mensaje += `- Tipo de habitación: ${getNombreTipo(tipo)}%0A`;
+      mensaje += `- Cantidad de noches: ${noches}%0A`;
+      if(precioNoche > 0) {
+        mensaje += `- Precio por noche: Q${precioNoche}%0A`;
+        mensaje += `- Total a pagar: Q${total}%0A`;
+      } else {
+        mensaje += `- Solicito habitación especial para más personas.%0A`;
+      }
+      mensaje += `- Nombre: ${nombre}%0A`;
+      mensaje += `- Teléfono: ${telefono}%0A`;
+      mensaje += `- Email: ${email}%0A`;
+      if(comentarios) {
+        mensaje += `- Comentarios: ${comentarios}%0A`;
+      }
+
+      // WhatsApp URL (tu número sin signos, solo números)
+      const numeroWhatsApp = '50240255881';
+      const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
+
+      window.open(url, '_blank');
+    });
+
+    function validateEmail(email) {
+      // Simple regex para validar email
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function getNombreTipo(codigo) {
+      const nombres = {
+        'Individual': 'Habitación Individual',
+        'Doble': 'Habitación Doble',
+        'DobleSinAire': 'Habitación Doble sin aire acondicionado',
+        'Triple': 'Habitación Triple',
+        'TripleSinAire': 'Habitación Triple sin aire acondicionado',
+        'Especial': 'Habitación especial (más personas)'
+      };
+      return nombres[codigo] || codigo;
+    }
   </script>
 
   <a href="https://wa.me/50240255881" target="_blank" aria-label="Contactar por WhatsApp" id="whatsappFloat" title="Contactar por WhatsApp">
