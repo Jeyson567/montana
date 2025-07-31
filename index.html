@@ -5,6 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gran Montana Hotel, Restaurante &amp; Steakhouse</title>
   <style>
+    /* WhatsApp flotante mejorado para móvil */
+    #whatsappFloat {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 3000;
+      background: #25d366;
+      border-radius: 50%;
+      box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+      padding: 8px;
+      transition: box-shadow 0.3s, transform 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 56px;
+      height: 56px;
+    }
+    #whatsappFloat img {
+      width: 40px;
+      height: 40px;
+    }
+    #whatsappFloat:hover {
+      box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+      transform: scale(1.08);
+    }
+    @media(max-width: 600px) {
+      #whatsappFloat {
+        right: 10px;
+        bottom: 10px;
+        width: 48px;
+        height: 48px;
+        padding: 4px;
+      }
+      #whatsappFloat img {
+        width: 32px;
+        height: 32px;
+      }
+    }
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Playfair+Display:wght@700&family=Open+Sans&display=swap');
 
     :root {
@@ -130,6 +168,51 @@
       gap: 55px;
       animation: fadeInUp 1s ease forwards;
     }
+    @media(max-width: 600px) {
+      main {
+        padding: 0 6px;
+        gap: 32px;
+      }
+      section {
+        padding: 22px 8px;
+        border-radius: 12px;
+      }
+      section h2 {
+        font-size: 1.5rem;
+        padding-bottom: 6px;
+      }
+      section p {
+        font-size: 1rem;
+        margin-bottom: 16px;
+      }
+      .imagenes-seccion {
+        gap: 4px;
+        margin-bottom: 12px;
+      }
+      .imagenes-seccion img {
+        max-height: 80px;
+        border-radius: 8px;
+      }
+      #formReservacion {
+        max-width: 100%;
+        gap: 10px;
+      }
+      #formReservacion label {
+        font-size: 0.95rem;
+      }
+      #formReservacion input,
+      #formReservacion select,
+      #formReservacion textarea {
+        font-size: 0.95rem;
+        padding: 8px 10px;
+        border-radius: 8px;
+      }
+      #btnConfirmar {
+        font-size: 1rem;
+        padding: 12px 0;
+        border-radius: 20px;
+      }
+    }
 
     /* Menú lateral para desktop */
     #opciones {
@@ -149,6 +232,29 @@
       display: flex;
       flex-direction: column;
       gap: 15px;
+    }
+    @media(max-width: 600px) {
+      #opciones {
+        width: 90vw;
+        min-width: 180px;
+        max-width: 320px;
+        padding: 12px 4px;
+        border-radius: 0 12px 12px 0;
+        font-size: 1rem;
+      }
+      #opciones h2 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+      }
+      #opciones nav a {
+        font-size: 1rem;
+        padding: 8px 8px;
+        border-radius: 6px;
+      }
+      #btnCerrarMenu {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+      }
     }
     #opciones h2 {
       color: var(--color-principal);
@@ -928,7 +1034,7 @@
   </script>
 
   <a href="https://wa.me/50240255881" target="_blank" aria-label="Contactar por WhatsApp" id="whatsappFloat" title="Contactar por WhatsApp">
-    📱
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
   </a>
 </body>
 </html>
