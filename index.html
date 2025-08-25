@@ -202,7 +202,7 @@
       left: 0;
       width: 220px;
       height: calc(100vh - var(--header-height));
-      background: rgba(255,255,255,0.98);
+      background: #fff !important;
       box-shadow: 0 2px 8px rgba(212,175,55,0.08);
       padding: 20px 15px;
       overflow-y: auto;
@@ -238,7 +238,7 @@
       }
     }
     #opciones h2 {
-      color: #232323;
+      color: #232323 !important;
       font-family: 'Playfair Display', serif;
       font-size: 1.6rem;
       margin-bottom: 15px;
@@ -254,7 +254,7 @@
       display: block;
       padding: 10px 12px;
       font-family: 'Orbitron', sans-serif;
-      color: #232323;
+      color: #232323 !important;
       text-decoration: none;
       font-weight: 600;
       font-size: 1.12rem;
@@ -264,7 +264,7 @@
     #opciones nav a:hover,
     #opciones nav a:focus {
       background-color: var(--color-acento);
-      color: #fff;
+      color: #fff !important;
       outline: none;
       box-shadow: 0 0 8px var(--color-acento);
       cursor: pointer;
@@ -959,50 +959,40 @@
       }
     });
 
-    // Scroll suave al botón Reservar ahora
-    document.getElementById('btnReservacion').addEventListener('click', () => {
-      document.getElementById('seccionReservacion').scrollIntoView({behavior: 'smooth'});
+    // Botón Reservar ahora: scroll y si el formulario está lleno, enviar a WhatsApp
+    document.getElementById('btnReservacion').addEventListener('click', (e) => {
+      const form = document.getElementById('formReservacion');
+      const tipo = document.getElementById('tipoHabitacion').value;
+      const noches = parseInt(document.getElementById('noches').value, 10);
+      const nombre = document.getElementById('nombreCliente').value.trim();
+      const telefono = document.getElementById('telefonoCliente').value.trim();
+      // Si el formulario está lleno, enviar a WhatsApp
+      if(tipo && noches > 0 && nombre && telefono) {
+        enviarReservacionWhatsApp();
+      } else {
+        document.getElementById('seccionReservacion').scrollIntoView({behavior: 'smooth'});
+      }
     });
 
-    // Manejo del formulario y envío por WhatsApp
-    document.getElementById('formReservacion').addEventListener('submit', e => {
-      e.preventDefault();
-
+    // Función para enviar reservación a WhatsApp
+    function enviarReservacionWhatsApp() {
       const tipo = document.getElementById('tipoHabitacion').value;
       const noches = parseInt(document.getElementById('noches').value, 10);
       const nombre = document.getElementById('nombreCliente').value.trim();
       const telefono = document.getElementById('telefonoCliente').value.trim();
       const comentarios = document.getElementById('comentarios').value.trim();
-
-      if(!tipo) {
-        alert('Por favor, selecciona un tipo de habitación.');
+      if(!tipo || !noches || !nombre || !telefono) {
+        alert('Por favor, completa todos los campos obligatorios.');
         return;
       }
-      if(noches < 1 || isNaN(noches)) {
-        alert('Por favor, ingresa una cantidad válida de noches.');
-        return;
-      }
-      if(!nombre) {
-        alert('Por favor, ingresa tu nombre.');
-        return;
-      }
-      if(!telefono) {
-        alert('Por favor, ingresa tu teléfono de contacto.');
-        return;
-      }
-
-      // Precios según tipo de habitación
       const precios = {
         'Individual': 200,
         'Doble': 350,
         'Triple': 500,
         'Especial': 0
       };
-
       let precioNoche = precios[tipo];
       let total = precioNoche * noches;
-
-      // Armar mensaje
       let mensaje = `Hola, quisiera reservar en Gran Montana:%0A`;
       mensaje += `- Tipo de habitación: ${getNombreTipo(tipo)}%0A`;
       mensaje += `- Cantidad de noches: ${noches}%0A`;
@@ -1017,12 +1007,15 @@
       if(comentarios) {
         mensaje += `- Comentarios: ${comentarios}%0A`;
       }
-
-      // WhatsApp URL (tu número sin signos, solo números)
       const numeroWhatsApp = '50240255881';
       const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
-
       window.open(url, '_blank');
+    }
+
+    // Manejo del formulario y envío por WhatsApp
+    document.getElementById('formReservacion').addEventListener('submit', e => {
+      e.preventDefault();
+      enviarReservacionWhatsApp();
     });
 
     function getNombreTipo(codigo) {
