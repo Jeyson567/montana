@@ -939,6 +939,24 @@
       });
     });
 
+    // Cerrar menú al hacer scroll en móvil
+    let lastScrollY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      if(window.innerWidth < 900 && menu.classList.contains('abierto')) {
+        menu.classList.remove('abierto');
+      }
+      lastScrollY = window.scrollY;
+    });
+
+    // Cerrar menú al hacer click fuera del menú en móvil
+    document.addEventListener('click', (e) => {
+      if(window.innerWidth < 900 && menu.classList.contains('abierto')) {
+        if(!menu.contains(e.target) && e.target !== btnAbrirMenu) {
+          menu.classList.remove('abierto');
+        }
+      }
+    });
+
     // Scroll suave al botón Reservar ahora
     document.getElementById('btnReservacion').addEventListener('click', () => {
       document.getElementById('seccionReservacion').scrollIntoView({behavior: 'smooth'});
