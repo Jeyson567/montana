@@ -939,11 +939,13 @@
       });
     });
 
-    // Cerrar menú al hacer scroll en móvil
+    // Cerrar menú solo si el usuario hace scroll hacia abajo en móvil
     let lastScrollY = window.scrollY;
     window.addEventListener('scroll', () => {
       if(window.innerWidth < 900 && menu.classList.contains('abierto')) {
-        menu.classList.remove('abierto');
+        if(window.scrollY > lastScrollY) {
+          menu.classList.remove('abierto');
+        }
       }
       lastScrollY = window.scrollY;
     });
