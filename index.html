@@ -4,178 +4,104 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gran Montana Hotel, Restaurante &amp; Steakhouse</title>
+  <meta name="description" content="Hotel, restaurante y steakhouse en Poptún, Petén. Habitaciones cómodas, gastronomía variada y eventos. Contáctanos por WhatsApp para reservaciones." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
-      body {
-        background: #111;
-        color: #f9f9f9;
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0 0 40px 0;
-        min-height: 100vh;
-      }
-      header {
-        background: #181818;
-        color: #ffd700;
-        padding: 24px 20px 18px 0;
-        font-size: 2.2rem;
-        font-weight: bold;
-        position: fixed;
-        top: 0; left: 0; right: 0;
-        z-index: 1000;
-        box-shadow: 0 2px 8px #000a;
-        text-align: center;
-      }
-      main {
-        margin: 0 auto;
-        padding: 110px 20px 20px 20px;
-        max-width: 1000px;
-      }
-      section {
-        background: #181818;
-        border-radius: 12px;
-        margin-bottom: 32px;
-        padding: 32px 18px;
-        box-shadow: 0 2px 12px #0005;
-      }
-      section h2 {
-        color: #ffd700;
-        font-size: 1.5rem;
-        margin-bottom: 18px;
-        text-align: center;
-      }
-      .galeria {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-        gap: 14px;
-        margin-top: 18px;
-        margin-bottom: 10px;
-      }
-      .galeria img {
-        width: 100%;
-        height: 130px;
-        object-fit: cover;
-        border-radius: 10px;
-        box-shadow: 0 2px 8px #0007;
-        transition: transform 0.2s, box-shadow 0.2s;
-        background: #222;
-      }
-      .galeria img:hover {
-        transform: scale(1.04);
-        box-shadow: 0 6px 18px #ffd70055;
-      }
-      .flex-seccion {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 24px;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .flex-texto {
-        flex: 1 1 260px;
-        min-width: 180px;
-      }
-      @media (max-width: 700px) {
-        header { font-size: 1.3rem; padding: 18px 4px 10px 4px; }
-        main { padding: 90px 4px 10px 4px; }
-        section { padding: 16px 4px; }
-        .galeria { grid-template-columns: 1fr 1fr; gap: 6px; }
-        .galeria img { height: 80px; border-radius: 6px; }
-        .flex-seccion { flex-direction: column; gap: 10px; }
-      }
-      .boton-contacto {
-        background: #ffd700;
-        color: #181818;
-        border: none;
-        border-radius: 20px;
-        padding: 12px 0;
-        font-size: 1.1rem;
-        font-weight: bold;
-        width: 100%;
-        margin-top: 10px;
-        cursor: pointer;
-        transition: background 0.2s, color 0.2s;
-        display: block;
-        text-align: center;
-        text-decoration: none;
-      }
-      .boton-contacto:hover {
-        background: #fff;
-        color: #111;
-      }
-      #whatsappFloat {
-        position: fixed;
-        right: 18px;
-        bottom: 18px;
-        z-index: 3000;
-        background: #25d366;
-        border-radius: 50%;
-        box-shadow: 0 4px 16px rgba(37,211,102,0.3);
-        padding: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 56px;
-        height: 56px;
-      }
-      #whatsappFloat img {
-        width: 40px;
-        height: 40px;
-      }
-      @media (max-width: 700px) {
-        #whatsappFloat { right: 10px; bottom: 10px; width: 48px; height: 48px; padding: 4px; }
-        #whatsappFloat img { width: 32px; height: 32px; }
-      }
-    </style>
+    html { scroll-behavior: smooth; }
+    body { background: #111; color: #f9f9f9; font-family: 'Montserrat', sans-serif; }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.8s ease-out forwards; }
+  </style>
 </head>
 <body>
-  <header>GRAN MONTANA</header>
-  <main>
-    <section id="bienvenida">
-      <h2>Bienvenidos a Gran Montana</h2>
-      <div class="flex-seccion">
-        <div class="flex-texto">
-          <p>Descubre el equilibrio perfecto entre naturaleza y confort en Gran Montana Hotel, Restaurante &amp; Steakhouse. Ubicados en el corazón de Poptún, Petén, te invitamos a vivir una experiencia inolvidable, donde cada detalle está pensado para tu bienestar y confort.</p>
-          <p>Nuestro compromiso es brindarte una estancia inolvidable, combinando lujo, atención personalizada y un ambiente cálido y elegante.</p>
-          <p>En Gran Montana, cada huésped es especial. Nos esforzamos por ofrecer un servicio personalizado, instalaciones impecables y una atmósfera acogedora que te hará sentir como en casa desde el primer momento.</p>
-          <p>Disfruta de la tranquilidad de nuestras áreas verdes, la comodidad de nuestras habitaciones y la excelencia de nuestra gastronomía. Ya sea que viajes por placer, negocios o en familia, aquí encontrarás el espacio ideal para descansar y disfrutar.</p>
+  <header class="fixed w-full bg-gray-900 text-white z-50 shadow">
+    <div class="container mx-auto flex items-center justify-between px-4 py-3">
+      <a href="#" class="text-2xl font-extrabold">Gran Montana</a>
+      <nav>
+        <ul class="hidden md:flex space-x-6">
+          <li><a href="#bienvenida" class="hover:text-yellow-400 transition">Inicio</a></li>
+          <li><a href="#alojamiento" class="hover:text-yellow-400 transition">Alojamiento</a></li>
+          <li><a href="#restaurante" class="hover:text-yellow-400 transition">Restaurante</a></li>
+          <li><a href="#eventos" class="hover:text-yellow-400 transition">Eventos</a></li>
+          <li><a href="#piscina" class="hover:text-yellow-400 transition">Piscina</a></li>
+          <li><a href="#contacto" class="hover:text-yellow-400 transition">Contacto</a></li>
+        </ul>
+        <button id="menu-toggle" class="md:hidden focus:outline-none">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+      </nav>
+    </div>
+    <div id="mobile-menu" class="md:hidden hidden bg-gray-800">
+      <ul class="flex flex-col space-y-2 p-4">
+        <li><a href="#bienvenida" class="block text-white hover:text-yellow-400">Inicio</a></li>
+        <li><a href="#alojamiento" class="block text-white hover:text-yellow-400">Alojamiento</a></li>
+        <li><a href="#restaurante" class="block text-white hover:text-yellow-400">Restaurante</a></li>
+        <li><a href="#eventos" class="block text-white hover:text-yellow-400">Eventos</a></li>
+        <li><a href="#piscina" class="block text-white hover:text-yellow-400">Piscina</a></li>
+        <li><a href="#contacto" class="block text-white hover:text-yellow-400">Contacto</a></li>
+      </ul>
+    </div>
+  </header>
+  <main class="pt-16">
+    <!-- Hero banner -->
+    <div class="relative h-screen -mt-16">
+      <img src="IMG_4533[1].PNG" alt="Hotel Gran Montana" class="absolute inset-0 w-full h-full object-cover brightness-75" />
+      <div class="absolute inset-0 flex flex-col justify-center items-center text-center px-4">
+        <h1 class="text-4xl md:text-6xl font-bold text-yellow-400 mb-4">Bienvenidos a Gran Montana</h1>
+        <p class="text-white max-w-2xl">Experiencias únicas en Poptún, Petén. Hotel, restaurante, eventos y más.</p>
+        <a href="#contacto" class="mt-6 bg-yellow-400 text-gray-900 font-semibold py-3 px-6 rounded-lg shadow hover:bg-yellow-300 transition">Reservar ahora</a>
+      </div>
+    </div>
+    <section id="bienvenida" class="py-16 bg-gray-800 rounded-xl mb-10 mx-4 md:mx-auto max-w-5xl shadow-lg">
+      <h2 class="text-2xl font-bold text-yellow-400 text-center mb-4">Bienvenidos a Gran Montana</h2>
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="flex-1 md:w-2/3 prose lg:prose-lg text-lg leading-relaxed space-y-4">
+          <p class="md:animate-pulse">Bienvenido a <span class="font-semibold">Gran Montana Hotel, Restaurante &amp; Steakhouse</span>, un refugio donde la naturaleza se encuentra con el confort. Estamos en el corazón de Poptún, Petén, listos para ofrecerte una experiencia única en la que cada detalle se ha diseñado pensando en tu bienestar.</p>
+          <p>Nuestro objetivo es que vivas una <span class="font-bold">estancia inolvidable</span>. Aquí encontrarás lujo discreto, atención personalizada y un ambiente acogedor que te hará sentir como en casa.</p>
+          <p>Para nosotros, <span class="underline">cada huésped es especial</span>. Por eso contamos con instalaciones impecables y un equipo siempre dispuesto a ayudarte, desde tu llegada hasta tu partida.</p>
+          <p>Relájate en nuestros jardines, descansa en cómodas habitaciones y disfruta de una gastronomía de primer nivel. Viajes por placer, trabajo o en familia, en Gran Montana hallarás el lugar perfecto para descansar y recrearte.</p>
         </div>
-        <div class="galeria">
-          <img src="https://i.imgur.com/V3riEI9.jpg" alt="Habitación cómoda y elegante" loading="lazy" />
-          <img src="https://i.imgur.com/PpW72tX.jpg" alt="Área social del restaurante" loading="lazy" />
-          <img src="https://i.imgur.com/bPTtyNL.jpg" alt="Área de descanso o salón para eventos" loading="lazy" />
-          <img src="https://i.imgur.com/nYvjxGR.jpg" alt="Piscina segura para toda la familia" loading="lazy" />
+        <div class="galeria hidden md:block md:w-1/3 grid grid-cols-1 gap-4 mt-4 mb-2">
+          <figure class="opacity-0">
+            <img class="w-full h-40 object-cover rounded-lg shadow-lg transition-all duration-300 hover:scale-110 hover:brightness-110" src="IMG_4532[1].PNG" alt="Habitación cómoda" loading="lazy" />
+          </figure>
         </div>
       </div>
     </section>
-    <section id="alojamiento">
-      <h2>Alojamiento</h2>
-      <div class="flex-seccion">
-        <div class="flex-texto">
-          <p>Habitaciones cómodas para viajeros solos, parejas y familias. Equipadas con mobiliario moderno, control de clima y Wi-Fi estable. Servicios: agua caliente, amenidades premium y atención 24 horas.</p>
-          <p>Cada habitación ha sido diseñada pensando en tu descanso, con camas confortables, espacios amplios y detalles que marcan la diferencia. Contamos con opciones individuales, dobles, triples y familiares, todas con acceso a servicios exclusivos.</p>
-          <ul>
+    <section id="alojamiento" class="py-16 bg-gray-800 rounded-xl mb-10 mx-4 md:mx-auto max-w-5xl shadow-lg">
+      <h2 class="text-2xl font-bold text-yellow-400 text-center mb-4">Alojamiento</h2>
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="flex-1 md:w-2/3 prose lg:prose-lg text-lg leading-relaxed space-y-4">
+          <p>Ofrecemos habitaciones confortables y bien equipadas, ideales para viajeros solitarios, parejas o familias. Cada espacio cuenta con aire acondicionado, conexión Wi‑Fi de alta velocidad y amenidades de primera calidad. Además, disponemos de agua caliente las 24 horas y servicio de atención continuo.</p>
+          <p>Nuestras habitaciones, disponibles en configuración individual, doble, triple y familiar, están pensadas para maximizar tu descanso. Son amplias, luminosas y decoradas con detalles que realzan la experiencia.</p>
+          <ul class="list-disc ml-5">
             <li>Wi-Fi de alta velocidad gratuito</li>
             <li>Televisión por cable y Smart TV</li>
             <li>Baño privado con agua caliente</li>
             <li>Servicio a la habitación</li>
           </ul>
         </div>
-        <div class="galeria">
-          <img src="https://i.imgur.com/V3riEI9.jpg" alt="Habitación cómoda y elegante" loading="lazy" />
-          <img src="https://i.imgur.com/okTVXYN.jpg" alt="Habitación doble moderna" loading="lazy" />
-          <img src="https://i.imgur.com/SGOB5uZ.jpg" alt="Lobby del hotel" loading="lazy" />
-          <img src="https://i.imgur.com/ExG3ZAN.jpg" alt="Habitación" loading="lazy" />
-          <img src="https://i.imgur.com/FWTbnlw.jpg" alt="Habitación" loading="lazy" />
-          <img src="https://i.imgur.com/n2acC7h.jpg" alt="Baño habitación" loading="lazy" />
+        <div class="galeria hidden md:block md:w-1/3 grid grid-cols-1 gap-4 mt-4 mb-2">
+          <figure class="opacity-0">
+            <img class="w-full h-40 object-cover rounded-lg shadow-lg transition-all duration-300 hover:scale-110 hover:brightness-110" src="https://i.imgur.com/V3riEI9.jpg" alt="Habitación" loading="lazy" />
+          </figure>
         </div>
       </div>
     </section>
-    <section id="restaurante">
-      <h2>Restaurante</h2>
-      <div class="flex-seccion">
-        <div class="flex-texto">
-          <p>Variedad gastronómica con sabores locales e internacionales. Menús frescos diarios con opciones vegetarianas y especiales. Ambiente acogedor y música en vivo en ocasiones especiales.</p>
-          <p>Nuestro restaurante es el lugar perfecto para compartir en familia, celebrar ocasiones especiales o simplemente disfrutar de una buena comida. Prueba nuestros cortes de carne, platillos típicos y postres caseros preparados por chefs expertos.</p>
+    <section id="restaurante" class="py-16 bg-gray-800 rounded-xl mb-10 mx-4 md:mx-auto max-w-5xl shadow-lg">
+      <h2 class="text-2xl font-bold text-yellow-400 text-center mb-4">Restaurante</h2>
+      <div class="flex flex-col md:flex-row gap-8 items-center">
+        <div class="flex-1 min-w-[180px]">
+          <p>Disfruta de una propuesta gastronómica variada que combina lo mejor de la cocina local e internacional. Nuestros menús cambian diariamente y siempre incluyen opciones vegetarianas y especiales. El ambiente es acogedor y, en fechas seleccionadas, ambientamos con música en vivo.</p>
+          <p>En el restaurante encontrarás el espacio ideal para reuniones familiares, celebraciones o simplemente para deleitarte con una buena comida. Degusta cortes de carne seleccionados, recetas tradicionales y postres caseros elaborados por nuestro equipo de chefs.</p>
           <ul>
             <li>Desayunos, almuerzos y cenas a la carta</li>
             <li>Menú infantil y opciones vegetarianas</li>
@@ -183,55 +109,98 @@
             <li>Eventos temáticos y noches de música en vivo</li>
           </ul>
         </div>
-        <div class="galeria">
-          <img src="https://i.imgur.com/PpW72tX.jpg" alt="Área social del restaurante" loading="lazy" />
-          <img src="https://i.imgur.com/tieKydi.jpg" alt="Pasillos y áreas comunes del restaurante" loading="lazy" />
+        <div class="galeria hidden md:block md:w-1/3 grid grid-cols-1 gap-4 mt-4 mb-2">
+          <figure class="opacity-0">
+            <img class="w-full h-40 object-cover rounded-lg shadow-lg transition-all duration-300 hover:scale-110 hover:brightness-110" src="https://i.imgur.com/PpW72tX.jpg" alt="Restaurante" loading="lazy" />
+          </figure>
         </div>
       </div>
     </section>
-    <section id="eventos">
-      <h2>Eventos y Celebraciones</h2>
-      <div class="flex-seccion">
-        <div class="flex-texto">
-          <p>Espacios versátiles para eventos sociales y corporativos. Tecnología audiovisual y catering personalizado. Ideal para reuniones, capacitaciones y celebraciones.</p>
-          <p>Contamos con salones equipados, áreas al aire libre y un equipo profesional que te ayudará a organizar desde pequeñas reuniones hasta grandes celebraciones. Consulta por nuestros paquetes especiales para bodas, cumpleaños y eventos empresariales.</p>
+    <section id="eventos" class="py-16 bg-gray-800 rounded-xl mb-10 mx-4 md:mx-auto max-w-5xl shadow-lg">
+      <h2 class="text-2xl font-bold text-yellow-400 text-center mb-4">Eventos y Celebraciones</h2>
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="flex-1 md:w-2/3 prose lg:prose-lg text-lg leading-relaxed space-y-4">
+          <p>Espacios versátiles para eventos sociales y corporativos. Tecnología audiovisual y catering personalizado, ideales para reuniones, capacitaciones y celebraciones.</p>
+          <p>Disponemos de salones equipados, áreas al aire libre y un equipo profesional que te ayudará a organizar desde pequeñas reuniones hasta grandes celebraciones. Consulta por nuestros paquetes especiales para bodas, cumpleaños y eventos empresariales.</p>
         </div>
-        <div class="galeria">
-          <img src="https://i.imgur.com/bPTtyNL.jpg" alt="Área de descanso o salón para eventos" loading="lazy" />
-        </div>
-      </div>
-    </section>
-    <section id="piscina">
-      <h2>Piscina y Áreas Recreativas</h2>
-      <div class="flex-seccion">
-        <div class="flex-texto">
-          <p>Piscina segura y limpia para toda la familia. Zonas de descanso con sombra y vistas panorámicas.</p>
-          <p>Relájate en nuestra piscina, disfruta del sol en las áreas verdes o comparte momentos inolvidables en los espacios recreativos. Disponemos de juegos para niños, áreas de picnic y servicio de snacks junto a la piscina.</p>
-        </div>
-        <div class="galeria">
-          <img src="https://i.imgur.com/nYvjxGR.jpg" alt="Piscina segura para toda la familia" loading="lazy" />
-          <img src="https://i.imgur.com/bPTtyNL.jpg" alt="Área de descanso junto a la piscina" loading="lazy" />
-          <img src="https://i.imgur.com/wbRH7lU.jpg" alt="Área exterior y piscina" loading="lazy" />
+        <div class="galeria hidden md:block md:w-1/3 grid grid-cols-1 gap-4 mt-4 mb-2">
+          <figure class="opacity-0">
+            <img class="w-full h-40 object-cover rounded-lg shadow-lg transition-all duration-300 hover:scale-110 hover:brightness-110" src="IMG_3440[1].JPG" alt="Salón de eventos" loading="lazy" />
+          </figure>
         </div>
       </div>
     </section>
-    <section id="mapa">
-      <h2>Ubicación</h2>
+    <section id="piscina" class="py-16 bg-gray-800 rounded-xl mb-10 mx-4 md:mx-auto max-w-5xl shadow-lg">
+      <h2 class="text-2xl font-bold text-yellow-400 text-center mb-4">Piscina y Áreas Recreativas</h2>
+      <div class="flex flex-col md:flex-row gap-8 items-start">
+        <div class="flex-1 md:w-2/3 prose lg:prose-lg text-lg leading-relaxed space-y-4">
+          <p>Piscina segura y limpia para toda la familia, con zonas de descanso a la sombra y vistas panorámicas.</p>
+          <p>Relájate en nuestra piscina, disfruta del sol en las áreas verdes o comparte momentos inolvidables en los espacios recreativos. Contamos con juegos para niños, áreas de picnic y servicio de snacks a la orilla.</p>
+        </div>
+        <div class="galeria hidden md:block md:w-1/3 grid grid-cols-1 gap-4 mt-4 mb-2">
+          <figure class="opacity-0">
+            <img class="w-full h-40 object-cover rounded-lg shadow-lg transition-all duration-300 hover:scale-110 hover:brightness-110" src="IMG_3828[1].JPG" alt="Piscina" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </section>
+    <section id="mapa" class="py-16 bg-gray-800 rounded-xl mb-10 mx-4 md:mx-auto max-w-5xl shadow-lg">
+      <h2 class="text-2xl font-bold text-yellow-400 text-center mb-4">Ubicación</h2>
       <p>Poptún, Petén, Barrio Las Tres Cruces Zona 2</p>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.331052445842!2d-89.41719058561144!3d16.328853093283066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f606315f49ece35%3A0xb4503b98d571b3fb!2sGran%20Montana%20Hotel%20y%20Restaurante!5e0!3m2!1ses!2sgt!4v1685021876453!5m2!1ses!2sgt" width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.331052445842!2d-89.41719058561144!3d16.328853093283066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f606315f49ece35%3A0xb4503b98d571b3fb!2sGran%20Montana%20Hotel%20y%20Restaurante!5e0!3m2!1ses!2sgt!4v1685021876453!5m2!1ses!2sgt" class="w-full h-64 rounded-lg" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
     </section>
-    <section id="contacto">
-      <h2>Contacto</h2>
+
+    <!-- Sección añadida para el formulario de reservación -->
+    <section id="reservacion">
+      <h2 class="text-2xl font-bold text-yellow-400 text-center mb-4">Reservaciones</h2>
+      <form id="formReservacion" class="space-y-4">
+        <div>
+          <label for="tipoHabitacion" class="block mb-1">Tipo de habitación:</label>
+          <select id="tipoHabitacion" required class="w-full px-3 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400">
+            <option value="">Seleccione...</option>
+            <option value="individual">Individual</option>
+            <option value="doble">Doble</option>
+            <option value="triple">Triple</option>
+            <option value="familiar">Familiar</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="noches" class="block mb-1">Noches:</label>
+          <input type="number" id="noches" min="1" required class="w-full px-3 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        </div>
+
+        <div>
+          <label for="nombreCliente" class="block mb-1">Nombre:</label>
+          <input type="text" id="nombreCliente" required class="w-full px-3 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        </div>
+
+        <div>
+          <label for="telefonoCliente" class="block mb-1">Teléfono:</label>
+          <input type="tel" id="telefonoCliente" pattern="[0-9+\- ]+" required class="w-full px-3 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+        </div>
+
+        <div>
+          <label for="comentarios" class="block mb-1">Comentarios (opcional):</label>
+          <textarea id="comentarios" rows="3" class="w-full px-3 py-2 rounded bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+        </div>
+
+        <button type="submit" class="bg-yellow-400 text-gray-900 font-semibold py-2 px-6 rounded-lg shadow hover:bg-yellow-300 transition">Enviar solicitud</button>
+      </form>
+    </section>
+
+    <section id="contacto" class="py-16 bg-gray-800 rounded-xl mb-10 mx-4 md:mx-auto max-w-5xl shadow-lg">
+      <h2 class="text-2xl font-bold text-yellow-400 text-center mb-4">Contacto</h2>
       <p>¿Quieres reservar o tienes alguna consulta? ¡Contáctanos directamente por WhatsApp!</p>
-      <a href="https://wa.me/50240255881" target="_blank" class="boton-contacto">Contactar por WhatsApp</a>
-      <a href="https://menumontana.wordpress.com" target="_blank" class="boton-contacto" style="margin-top:10px;">Menú del Restaurante</a>
-      <a href="https://numeroscuentapinomontana.wordpress.com" target="_blank" class="boton-contacto" style="margin-top:10px;">Números de Cuenta</a>
-      <a href="https://drive.google.com/file/d/1MpZDgN5MQ2XpqUitoMwwfBM6l3wc6Dgt/view" target="_blank" class="boton-contacto" style="margin-top:10px;">Normativo del Hotel</a>
+      <a href="https://wa.me/50240255881" target="_blank" class="inline-block bg-yellow-400 text-gray-900 font-semibold py-2 px-6 rounded-lg shadow hover:bg-yellow-300 transition my-2">Contactar por WhatsApp</a>
+      <a href="https://menumontana.wordpress.com" target="_blank" class="inline-block bg-yellow-400 text-gray-900 font-semibold py-2 px-6 rounded-lg shadow hover:bg-yellow-300 transition my-2">Menú del Restaurante</a>
+      <a href="https://numeroscuentapinomontana.wordpress.com" target="_blank" class="inline-block bg-yellow-400 text-gray-900 font-semibold py-2 px-6 rounded-lg shadow hover:bg-yellow-300 transition my-2">Números de Cuenta</a>
+      <a href="https://drive.google.com/file/d/1MpZDgN5MQ2XpqUitoMwwfBM6l3wc6Dgt/view" target="_blank" class="inline-block bg-yellow-400 text-gray-900 font-semibold py-2 px-6 rounded-lg shadow hover:bg-yellow-300 transition my-2">Normativo del Hotel</a>
       <p>Teléfono: <strong>+502 4025-5881</strong></p>
     </section>
   </main>
-  <a href="https://wa.me/50240255881" target="_blank" id="whatsappFloat" title="Contactar por WhatsApp">
-    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" />
+  <a href="https://wa.me/50240255881" target="_blank" class="fixed right-4 bottom-4 bg-green-500 rounded-full shadow-lg p-3 flex items-center justify-center hover:bg-green-600 transition" title="Contactar por WhatsApp">
+    <img src="https://img.icons8.com/color/48/000000/whatsapp--v1.png" alt="WhatsApp" class="w-8 h-8" />
   </a>
   <script>
     document.getElementById('formReservacion').addEventListener('submit', function(e) {
@@ -254,6 +223,22 @@
       const url = `https://wa.me/50240255881?text=${mensaje}`;
       window.open(url, '_blank');
     });
+
+    // mobile menu toggle handler
+    document.getElementById('menu-toggle').addEventListener('click', function() {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // fade-in animation for figures
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('fade-up');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('figure').forEach(f => observer.observe(f));
   </script>
 </body>
 </html>
