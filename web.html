@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Gran Montana | Especial Día de las Madres</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+<style>
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+font-family:'Montserrat',sans-serif;
+background:
+linear-gradient(rgba(10,10,10,.82),rgba(10,10,10,.92)),
+url('https://images.unsplash.com/photo-1526045612212-70caf35c14df?q=80&w=1600&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+background-attachment:fixed;
+color:white;
+overflow-x:hidden;
+}
+
+.mother-card{
+background:rgba(30,30,30,.78);
+backdrop-filter:blur(12px);
+border:1px solid rgba(255,192,203,.15);
+box-shadow:0 10px 30px rgba(255,105,180,.10);
+}
+
+.title-mother{
+color:#ffb6d5;
+text-shadow:0 0 18px rgba(255,182,213,.35);
+}
+
+.pink-btn{
+background:linear-gradient(135deg,#ff4f87,#ff7ca8);
+color:white;
+transition:.3s;
+}
+
+.pink-btn:hover{
+transform:translateY(-2px);
+box-shadow:0 10px 25px rgba(255,105,180,.35);
+}
+
+.gold{
+color:#f7d774;
+}
+
+.flower-divider{
+text-align:center;
+font-size:2rem;
+letter-spacing:10px;
+padding:20px 0;
+color:#ffb6d5;
+}
+
+.hero-overlay{
+background:linear-gradient(rgba(0,0,0,.35),rgba(0,0,0,.65));
+}
+
+.glass{
+background:rgba(255,255,255,.05);
+backdrop-filter:blur(8px);
+}
+
+.floating{
+position:fixed;
+inset:0;
+pointer-events:none;
+opacity:.08;
+background-image:
+radial-gradient(circle at 20% 20%, pink 2px, transparent 2px),
+radial-gradient(circle at 80% 40%, #ff69b4 2px, transparent 2px),
+radial-gradient(circle at 50% 90%, #ffc0cb 2px, transparent 2px);
+background-size:120px 120px;
+z-index:0;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="floating"></div>
+
+<!-- HEADER -->
+
+<header class="fixed top-0 w-full bg-gradient-to-r from-pink-900 via-rose-800 to-red-900 z-50 shadow-2xl">
+
+<div class="container mx-auto flex justify-between items-center px-6 py-4">
+
+<a href="#" class="text-3xl font-extrabold title-mother">
+🌸 Gran Montana
+</a>
+
+<!-- MENU DESKTOP -->
+
+<nav class="hidden md:flex gap-8 text-white font-semibold">
+
+<a href="#bienvenida" class="hover:text-pink-200 transition duration-300">
+Inicio
+</a>
+
+<a href="#alojamiento" class="hover:text-pink-200 transition duration-300">
+Habitaciones
+</a>
+
+<a href="#restaurante" class="hover:text-pink-200 transition duration-300">
+Restaurante
+</a>
+
+<a href="#eventos" class="hover:text-pink-200 transition duration-300">
+Eventos
+</a>
+
+<a href="#piscina" class="hover:text-pink-200 transition duration-300">
+Piscina
+</a>
+
+<a href="#mapa" class="hover:text-pink-200 transition duration-300">
+Ubicación
+</a>
+
+<a href="#contacto" class="hover:text-pink-200 transition duration-300">
+Contacto
+</a>
+
+</nav>
+
+<!-- BOTON MENU -->
+
+<button
+id="menu-btn"
+class="md:hidden flex items-center justify-center w-12 h-12 rounded-xl bg-white/10 backdrop-blur-md border border-pink-300/20 text-white text-3xl hover:bg-white/20 transition duration-300">
+
+☰
+
+</button>
+
+</div>
+
+<!-- MENU MOBILE -->
+
+<div
+id="mobile-menu"
+class="hidden md:hidden bg-pink-950/95 backdrop-blur-xl border-t border-pink-300/20 shadow-2xl">
+
+<div class="flex flex-col px-6 py-6 space-y-5 text-white font-semibold text-lg">
+
+<a href="#bienvenida">🌸 Inicio</a>
+<a href="#alojamiento">🏨 Habitaciones</a>
+<a href="#restaurante">🍽️ Restaurante</a>
+<a href="#eventos">🎉 Eventos</a>
+<a href="#piscina">🏊 Piscina</a>
+<a href="#mapa">📍 Ubicación</a>
+<a href="#contacto">📞 Contacto</a>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+
+<img
+src="IMG_4533[1].PNG"
+class="absolute inset-0 w-full h-full object-cover brightness-50 scale-105"
+/>
+
+<div class="absolute inset-0 hero-overlay"></div>
+
+<div class="relative z-10 text-center px-6">
+
+<div class="text-5xl mb-5">
+🌸 💖 🌷
+</div>
+
+<h1 class="text-5xl md:text-7xl font-extrabold title-mother mb-6 leading-tight">
+
+Especial<br>
+Día de las Madres
+
+</h1>
+
+<p class="max-w-3xl mx-auto text-lg md:text-2xl text-white leading-relaxed">
+
+Celebra a mamá con una experiencia inolvidable en
+<span class="gold font-bold">
+Gran Montana Hotel, Restaurante & Steakhouse
+</span>
+
+</p>
+
+<div class="mt-10 flex flex-wrap gap-4 justify-center">
+
+<a href="#contacto"
+class="pink-btn px-8 py-4 rounded-full font-bold shadow-2xl text-lg">
+
+Reservar Ahora
+
+</a>
+
+<a href="https://menumontana.wordpress.com"
+target="_blank"
+class="border border-pink-300/30 bg-white/10 backdrop-blur-md px-8 py-4 rounded-full font-bold hover:bg-white/20 transition">
+
+🍽️ Ver Menú
+
+</a>
+
+</div>
+
+<div class="mt-10 text-pink-200 text-xl animate-pulse">
+
+🌹 Música • Familia • Celebración • Amor 🌹
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FELIZ DIA -->
+
+<section class="py-16 bg-gradient-to-r from-pink-900 via-rose-800 to-red-900 text-center">
+
+<div class="max-w-4xl mx-auto px-6">
+
+<div class="text-5xl mb-6">
+🌸 🌷 💖 🌹
+</div>
+
+<h2 class="text-4xl md:text-5xl font-extrabold mb-6">
+
+Feliz Día de las Madres
+
+</h2>
+
+<p class="text-lg md:text-xl text-pink-100 leading-relaxed">
+
+Gracias mamá por tu amor, dedicación y ternura.
+En Gran Montana queremos celebrar contigo este día tan especial.
+
+</p>
+
+</div>
+
+</section>
+
+<main class="relative z-10 pt-12">
+
+<!-- BIENVENIDA -->
+
+<section id="bienvenida"
+class="mother-card rounded-3xl max-w-6xl mx-auto px-8 py-16 mb-10">
+
+<h2 class="text-4xl font-extrabold title-mother text-center mb-10">
+Bienvenidos a Gran Montana
+</h2>
+
+<div class="grid md:grid-cols-2 gap-10 items-center">
+
+<div>
+
+<p class="text-lg leading-relaxed mb-5">
+
+Bienvenido a
+<span class="gold font-bold">
+Gran Montana Hotel, Restaurante & Steakhouse
+</span>,
+un refugio donde la naturaleza y el confort se unen para crear experiencias inolvidables.
+
+</p>
+
+<p class="text-lg leading-relaxed mb-5">
+
+Disfruta de un ambiente elegante, atención personalizada y espacios diseñados para compartir momentos especiales en familia.
+
+</p>
+
+<p class="text-lg leading-relaxed">
+
+Celebra el Día de las Madres con una experiencia premium llena de gastronomía, descanso y celebración.
+
+</p>
+
+</div>
+
+<div>
+
+<img
+src="IMG_4532[1].PNG"
+class="rounded-3xl shadow-2xl hover:scale-105 transition duration-500"
+/>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ALOJAMIENTO -->
+
+<section id="alojamiento"
+class="mother-card rounded-3xl max-w-6xl mx-auto px-8 py-16 mb-10">
+
+<h2 class="text-4xl font-extrabold title-mother text-center mb-10">
+Habitaciones
+</h2>
+
+<div class="grid md:grid-cols-2 gap-10 items-center">
+
+<div>
+
+<img
+src="https://i.imgur.com/V3riEI9.jpg"
+class="rounded-3xl shadow-2xl hover:scale-105 transition duration-500"
+/>
+
+</div>
+
+<div>
+
+<ul class="space-y-4 text-lg">
+
+<li>✨ Wi-Fi de alta velocidad</li>
+<li>✨ Aire acondicionado</li>
+<li>✨ Smart TV</li>
+<li>✨ Agua caliente 24 horas</li>
+<li>✨ Servicio a la habitación</li>
+<li>✨ Habitaciones familiares</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- RESTAURANTE -->
+
+<section id="restaurante"
+class="mother-card rounded-3xl max-w-6xl mx-auto px-8 py-16 mb-10">
+
+<h2 class="text-4xl font-extrabold title-mother text-center mb-8">
+
+Restaurante & Steakhouse
+
+</h2>
+
+<div class="flower-divider">
+🌷 🌸 🌹 🌺 🌷
+</div>
+
+<div class="grid md:grid-cols-2 gap-10 items-center">
+
+<div>
+
+<p class="text-lg leading-relaxed mb-5">
+
+Disfruta de cortes premium, platillos especiales y un ambiente elegante diseñado para celebrar el Día de las Madres.
+
+</p>
+
+<ul class="space-y-3 text-lg">
+
+<li>🍽️ Desayunos, almuerzos y cenas</li>
+<li>🍷 Bebidas nacionales e internacionales</li>
+<li>🎶 Música ambiental</li>
+<li>👨‍👩‍👧 Ambiente familiar</li>
+<li>🥩 Carnes premium Steakhouse</li>
+
+</ul>
+
+</div>
+
+<div>
+
+<img
+src="https://i.imgur.com/PpW72tX.jpg"
+class="rounded-3xl shadow-2xl hover:scale-105 transition duration-500"
+/>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- EVENTOS -->
+
+<section id="eventos"
+class="mother-card rounded-3xl max-w-6xl mx-auto px-8 py-16 mb-10">
+
+<h2 class="text-4xl font-extrabold title-mother text-center mb-10">
+Eventos y Celebraciones
+</h2>
+
+<div class="grid md:grid-cols-2 gap-10 items-center">
+
+<div>
+
+<img
+src="IMG_3440[1].JPG"
+class="rounded-3xl shadow-2xl hover:scale-105 transition duration-500"
+/>
+
+</div>
+
+<div>
+
+<p class="text-lg leading-relaxed mb-5">
+
+Espacios elegantes para celebraciones familiares, cumpleaños, cenas especiales y eventos corporativos.
+
+</p>
+
+<p class="text-lg leading-relaxed">
+
+Haz del Día de las Madres un recuerdo inolvidable con nuestro ambiente premium y atención personalizada.
+
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PISCINA -->
+
+<section id="piscina"
+class="mother-card rounded-3xl max-w-6xl mx-auto px-8 py-16 mb-10">
+
+<h2 class="text-4xl font-extrabold title-mother text-center mb-10">
+
+Piscina & Recreación
+
+</h2>
+
+<div class="grid md:grid-cols-2 gap-10 items-center">
+
+<div>
+
+<p class="text-lg leading-relaxed mb-5">
+
+Relájate y disfruta de nuestras áreas recreativas rodeadas de naturaleza y tranquilidad.
+
+</p>
+
+<p class="text-lg leading-relaxed">
+
+Perfecto para compartir momentos especiales en familia este Día de las Madres.
+
+</p>
+
+</div>
+
+<div>
+
+<img
+src="IMG_3828[1].JPG"
+class="rounded-3xl shadow-2xl hover:scale-105 transition duration-500"
+/>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MAPA -->
+
+<section id="mapa"
+class="mother-card rounded-3xl max-w-6xl mx-auto px-8 py-16 mb-10">
+
+<h2 class="text-4xl font-extrabold title-mother text-center mb-10">
+Ubicación
+</h2>
+
+<div class="flower-divider">
+🌸 🌷 🌹 🌺 🌸
+</div>
+
+<p class="text-center text-lg text-pink-100 mb-8">
+Poptún, Petén — Barrio Las Tres Cruces Zona 2
+</p>
+
+<div class="overflow-hidden rounded-3xl shadow-2xl border border-pink-300/20">
+
+<iframe
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3913.331052445842!2d-89.41719058561144!3d16.328853093283066!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f606315f49ece35%3A0xb4503b98d571b3fb!2sGran%20Montana%20Hotel%20y%20Restaurante!5e0!3m2!1ses!2sgt!4v1685021876453!5m2!1ses!2sgt"
+class="w-full h-[450px]"
+style="border:0;"
+allowfullscreen=""
+loading="lazy">
+</iframe>
+
+</div>
+
+</section>
+
+<!-- CONTACTO -->
+
+<section id="contacto"
+class="mother-card rounded-3xl max-w-5xl mx-auto px-8 py-16 mb-20">
+
+<h2 class="text-4xl font-extrabold title-mother text-center mb-8">
+Contacto y Reservaciones
+</h2>
+
+<div class="flower-divider">
+🌸 🌸 🌸
+</div>
+
+<p class="text-center text-lg text-pink-100 mb-10">
+Reserva y celebra con nosotros este Día de las Madres
+</p>
+
+<form
+class="glass rounded-3xl p-8 border border-pink-300/20 space-y-5">
+
+<input
+type="text"
+placeholder="Nombre"
+class="w-full px-4 py-4 rounded-xl bg-black/30 border border-pink-300/20 text-white focus:outline-none focus:ring-2 focus:ring-pink-400"
+/>
+
+<input
+type="tel"
+placeholder="Teléfono"
+class="w-full px-4 py-4 rounded-xl bg-black/30 border border-pink-300/20 text-white focus:outline-none focus:ring-2 focus:ring-pink-400"
+/>
+
+<textarea
+rows="4"
+placeholder="Comentarios"
+class="w-full px-4 py-4 rounded-xl bg-black/30 border border-pink-300/20 text-white focus:outline-none focus:ring-2 focus:ring-pink-400"></textarea>
+
+<button
+type="submit"
+class="pink-btn w-full py-4 rounded-xl font-bold text-lg">
+
+Enviar Reservación
+
+</button>
+
+</form>
+
+<div class="flex flex-wrap gap-4 justify-center mt-10">
+
+<a
+href="https://wa.me/50240255881"
+target="_blank"
+class="pink-btn inline-block px-8 py-4 rounded-full font-bold text-lg">
+
+📲 WhatsApp Reservaciones
+
+</a>
+
+<a
+href="https://menumontana.wordpress.com"
+target="_blank"
+class="pink-btn inline-block px-8 py-4 rounded-full font-bold text-lg">
+
+🍽️ Menú Restaurante
+
+</a>
+
+<a
+href="https://numeroscuentapinomontana.wordpress.com"
+target="_blank"
+class="pink-btn inline-block px-8 py-4 rounded-full font-bold text-lg">
+
+🏦 Números de Cuenta
+
+</a>
+
+<a
+href="https://drive.google.com/file/d/1MpZDgN5MQ2XpqUitoMwwfBM6l3wc6Dgt/view"
+target="_blank"
+class="pink-btn inline-block px-8 py-4 rounded-full font-bold text-lg">
+
+📄 Normativo del Hotel
+
+</a>
+
+</div>
+
+</section>
+
+<!-- FINAL -->
+
+<div class="text-center pb-16">
+
+<div class="text-5xl mb-5">
+💖 🌸 🌷 🌹 🌺
+</div>
+
+<p class="text-2xl italic text-pink-200">
+“Porque mamá merece lo mejor”
+</p>
+
+</div>
+
+</main>
+
+<!-- BOTON WHATSAPP -->
+
+<a
+href="https://wa.me/50240255881"
+target="_blank"
+class="fixed bottom-5 right-5 bg-gradient-to-r from-pink-500 to-rose-500 p-4 rounded-full shadow-2xl hover:scale-110 transition duration-300 border-2 border-white z-50">
+
+<img
+src="https://img.icons8.com/color/48/000000/whatsapp--v1.png"
+class="w-10 h-10"
+/>
+
+</a>
+
+<!-- SCRIPT MENU -->
+
+<script>
+
+const menuBtn = document.getElementById('menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+
+menuBtn.addEventListener('click', () => {
+
+mobileMenu.classList.toggle('hidden');
+
+});
+
+</script>
+
+</body>
+</html>
